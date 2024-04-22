@@ -1,29 +1,23 @@
-<x-app-layout>
-    <x-slot name="header">
-        <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-            {{ __('Profile') }}
-        </h2>
-    </x-slot>
-
-    <div class="py-12">
-        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8 space-y-6">
-            <div class="p-4 sm:p-8 bg-white shadow sm:rounded-lg">
-                <div class="max-w-xl">
-                    @include('profile.partials.update-profile-information-form')
-                </div>
-            </div>
-
-            <div class="p-4 sm:p-8 bg-white shadow sm:rounded-lg">
-                <div class="max-w-xl">
-                    @include('profile.partials.update-password-form')
-                </div>
-            </div>
-
-            <div class="p-4 sm:p-8 bg-white shadow sm:rounded-lg">
-                <div class="max-w-xl">
-                    @include('profile.partials.delete-user-form')
-                </div>
-            </div>
-        </div>
+@extends('layouts.app')
+{{-- @section('page-title')
+    <div class="page-title d-flex flex-column justify-content-center flex-wrap me-3">
+        <h1 class="page-heading d-flex text-dark fw-bold flex-column justify-content-center my-0">
+            Dashboard >
+        </h1>
     </div>
-</x-app-layout>
+@endsection --}}
+@section('page-title')
+    <div class="page-title d-flex flex-column  flex-wrap me-3  border border-success rounded-pill  ">
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb mb-0 rounded-pill ">
+                <li class="breadcrumb-item"><a href="{{ route('dashboard') }}">Dashboard</a></li>
+                <li class="breadcrumb-item active" aria-current="page">Profile</li>
+                <li class="ml-auto">{{ \Carbon\Carbon::now()->format('D d F Y') }}</li>
+            </ol>
+        </nav>
+    </div>
+    @endsection
+@section('content')
+
+
+@endsection

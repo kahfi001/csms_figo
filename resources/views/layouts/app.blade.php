@@ -76,7 +76,13 @@
 
                 <!-- Begin Page Content -->
                 <div class="container-fluid">
-
+                    @hasSection('page-title')
+                        <div class="app-toolbar">
+                            <div  class="app-container ">
+                                @yield('page-title')
+                            </div>
+                        </div>
+                    @endif
                     <!-- Page Heading -->
                     <div class=" align-items-center justify-content-between mb-4">
                         @yield('content')

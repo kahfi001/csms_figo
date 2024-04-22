@@ -14,12 +14,12 @@
     <hr class="sidebar-divider my-0">
 
     <!-- Nav Item - Dashboard -->
-    <li class="nav-item active">
+    <li class="nav-item {{ Route::is('dashboard') ? 'active' : '' }} ">
         <a class="nav-link" href={{ route('dashboard') }}>
             <span>HOME</span></a>
     </li>
-    <li class="nav-item ">
-        <a class="nav-link" href={{ route('dashboard') }}>
+    <li class="nav-item {{ Route::is('profile.edit') ? 'active' : '' }} ">
+        <a class="nav-link " href={{ route('profile.edit') }}>
             <span>PROFILE</span></a>
     </li>
     <li class="nav-item ">
