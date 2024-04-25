@@ -4,7 +4,7 @@
     <a href={{ route('dashboard') }}
     class="sidebar-brand d-flex align-items-center justify-content-center" href="index.html">
         <img class="img-fluid"
-                    src="{{asset ('sb-admin/img/logo.png') }}">
+            src="{{asset ('sb-admin/img/logo.png') }}">
     </a>
 
     <hr class="sidebar-divider my-0">
@@ -17,12 +17,12 @@
         <a class="nav-link " href={{ route('profile.edit') }}>
             <span>PROFILE</span></a>
     </li>
-    <li class="nav-item ">
-        <a class="nav-link" href={{ route('dashboard') }}>
+    <li class="nav-item {{ Route::is('prakualifikasi') ? 'active' : '' }}">
+        <a class="nav-link" href={{ route('prakualifikasi') }}>
             <span>PRAKUALIFIKASI</span></a>
     </li>
-    <li class="nav-item ">
-        <a class="nav-link" href={{ route('dashboard') }}>
+    <li class="nav-item {{ Route::is('sertifikat') ? 'active' : '' }} ">
+        <a class="nav-link" href={{ route('sertifikat') }}>
             <span>SERTIFIKAT</span></a>
     </li>
 

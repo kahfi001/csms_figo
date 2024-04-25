@@ -21,6 +21,12 @@ Route::get('/', function () {
 Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
+Route::get('/prakualifikasi', function () {
+    return view('prakualifikasi.index');
+})->middleware(['auth', 'verified'])->name('prakualifikasi');
+Route::get('/sertifikat', function () {
+    return view('sertifikat.index');
+})->middleware(['auth', 'verified'])->name('sertifikat');
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');

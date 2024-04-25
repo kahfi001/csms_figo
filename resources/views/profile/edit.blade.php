@@ -32,7 +32,7 @@
         <div class="row mb-6 mb-2">
             <label class="col-lg-2 col-form-label required fw-semibold fs-6">Nama Perusahaan</label>
             <div class="col-lg-10 fv-row">
-                <input readonly type="text" name="prodi" class="form-control form-control-solid" placeholder="Prodi name" value="" />
+                <input readonly type="text" name="perusahaan" class="form-control form-control-solid" placeholder="Nama Perusahaan" value="" />
             </div>
         </div>
         <div class="row mb-6 mb-2">
