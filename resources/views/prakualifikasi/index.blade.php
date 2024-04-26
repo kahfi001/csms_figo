@@ -61,20 +61,16 @@
                         <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Doloremque esse est quasi.</p>
                         <div class="form-check form-check-inline">
                             <input class="form-check-input" type="radio" id="inlineradio1" value="option1">
-                            <label class="form-check-label" for="inlineradio1">1</label>
+                            <label class="form-check-label" for="inlineradio1">Ya</label>
                         </div>
                         <div class="form-check form-check-inline">
                             <input class="form-check-input" type="radio" id="inlineradio2" value="option2">
-                            <label class="form-check-label" for="inlineradio2">2</label>
+                            <label class="form-check-label" for="inlineradio2">Tidak</label>
                         </div>
                         <div class="form-check form-check-inline">
                             <input class="form-check-input" type="radio" id="inlineradio3" value="option3" >
-                            <label class="form-check-label" for="inlineradio3">3</label>
+                            <label class="form-check-label" for="inlineradio3">N/a</label>
                         </div>
-                        {{-- <div class="mb-3">
-                            <input class="button" type="file" id="formFile">
-                            <a href="#" class="btn btn-primary"><input type="file"><i class="fas fa-envelope-open-text fs-4 me-2"></i> Caption</a>
-                        </div> --}}
                         <div class="upload-btn-wrapper" style="position: relative;overflow: hidden;">
                             <button class="btn btn-outline-success mt-2 hover"> + Tambah Lampiran</button>
                             <input type="file" name="myfile" style=" font-size: 100px; position: absolute; left: 0; top: 0;opacity: 0;"/>
@@ -87,20 +83,16 @@
                         <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Doloremque esse est quasi.</p>
                         <div class="form-check form-check-inline">
                             <input class="form-check-input" type="radio" id="inlineradio1" value="option1">
-                            <label class="form-check-label" for="inlineradio1">1</label>
+                            <label class="form-check-label" for="inlineradio1">Ya</label>
                         </div>
                         <div class="form-check form-check-inline">
                             <input class="form-check-input" type="radio" id="inlineradio2" value="option2">
-                            <label class="form-check-label" for="inlineradio2">2</label>
+                            <label class="form-check-label" for="inlineradio2">Tidak</label>
                         </div>
                         <div class="form-check form-check-inline">
                             <input class="form-check-input" type="radio" id="inlineradio3" value="option3" >
-                            <label class="form-check-label" for="inlineradio3">3</label>
+                            <label class="form-check-label" for="inlineradio3">N/a</label>
                         </div>
-                        {{-- <div class="mb-3">
-                            <input class="button" type="file" id="formFile">
-                            <a href="#" class="btn btn-primary"><input type="file"><i class="fas fa-envelope-open-text fs-4 me-2"></i> Caption</a>
-                        </div> --}}
                         <div class="upload-btn-wrapper" style="position: relative;overflow: hidden;">
                             <button class="btn btn-outline-success mt-2 hover"> + Tambah Lampiran</button>
                             <input type="file" name="myfile" style=" font-size: 100px; position: absolute; left: 0; top: 0;opacity: 0;"/>

@@ -70,15 +70,15 @@
         <div id="content-wrapper" class="d-flex flex-column">
 
             <!-- Main Content -->
-            <div id="content">
+            <div id="content" style="background-image: url('sb-admin/img/bg-content.jpg'); background-size:cover">
 
                 @include('layouts.header')
 
                 <!-- Begin Page Content -->
-                <div class="container-fluid">
+                <div class="container-fluid" >
                     @hasSection('page-title')
                         <div class="app-toolbar">
-                            <div  class="app-container ">
+                            <div  class="app-container">
                                 @yield('page-title')
                             </div>
                         </div>
