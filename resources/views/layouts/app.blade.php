@@ -57,6 +57,8 @@
 
     <!-- Custom styles for this sb-admin-->
     <link href="{{ asset ('sb-admin/css/sb-admin-2.min.css') }}" rel="stylesheet">
+    {{-- <link rel="stylesheet" href="https://cdn.datatables.net/2.0.5/css/dataTables.bootstrap4.css"> --}}
+    <link href="{{ asset('sb-admin/vendor/datatables/dataTables.bootstrap4.min.css') }}" rel="stylesheet" type="text/css" />
 
 </head>
 
@@ -121,7 +123,19 @@
     <!-- Page level custom scripts -->
     <script src={{asset("sb-admin/js/demo/chart-area-demo.js")}}></script>
     <script src={{asset("sb-admin/js/demo/chart-pie-demo.js")}}></script> --}}
+{{-- 
+    <script src="https://code.jquery.com/jquery-3.7.1.js"></script>
+    <script src="https://cdn.datatables.net/2.0.5/js/dataTables.js"></script>
+    <script src="{{ asset('sb-admin/vendor/datatables/dataTables.bootstrap4.min.js') }}"></script> --}}
 
+    <script src="https://code.jquery.com/jquery-3.6.1.min.js"></script>
+
+    <link  href="https://cdn.datatables.net/1.10.21/css/jquery.dataTables.min.css" rel="stylesheet">
+
+    <script src="https://cdn.datatables.net/1.10.21/js/jquery.dataTables.min.js"></script>
+
+
+    @stack('scripts')
 </body>
 
 </html>

@@ -19,13 +19,8 @@
     @endsection
 @section('content')
 <div class="card card-docs flex-row-fluid mt-5 p-3 border-success" style="border-radius: 1.35rem">
-    <div class="card-header d-flex justify-content-between">
-        <div class="d-flex align-items-center position-relative my-1 mb-2 mb-md-0">
-            <input type="search" name="search" class="form-control form-control-solid w-250px ps-15" id="search" placeholder="Cari.." />
-        </div>
-    </div>
     <div class="card-body pt-0">
-        <table class="table ">
+        <table  id="users-table" class="table w-100 ">
             <thead> 
                 <th>no</th>
                 <th>name</th>
@@ -36,3 +31,25 @@
     </div>
 </div>
 @endsection
+@push('scripts')
+    <script>
+        $(document).ready( function () {
+            $('#users-table').DataTable({
+                processing: true,
+                serverSide: true,
+                ordering: true,
+                stateSave: false,
+                
+                ajax: "{{ url('user') }}",
+                columns: [  
+                            { data: 'name', name: 'name' },
+                            { data: 'email', name: 'email' },
+                        ]
+            });
+        });
+            
+        $('#search').on('keyup', function() {
+            datatable.search(this.value).draw();
+        });
+    </script>
+@endpush

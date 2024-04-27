@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -27,10 +28,11 @@ Route::get('/prakualifikasi', function () {
 Route::get('/sertifikat', function () {
     return view('sertifikat.index');
 })->middleware(['auth', 'verified'])->name('sertifikat');
-Route::get('/user', function () {
-    return view('users.index');
-})->middleware(['auth', 'verified'])->name('users');
+// Route::get('/user', function () {
+//     return view('users.index');
+// })->middleware(['auth', 'verified'])->name('users');
 
+Route::get('/user', [UserController::class, 'index'])->name('users');
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
