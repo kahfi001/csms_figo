@@ -26,7 +26,7 @@
             <span>SERTIFIKAT</span></a>
     </li>
     <li class="nav-item {{ Route::is('user') ? 'active' : '' }} ">
-        <a class="nav-link" href={{ route('user') }}>
+        <a class="nav-link" href={{ route('users') }}>
             <span>USER</span></a>
     </li>
 

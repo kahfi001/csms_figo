@@ -27,6 +27,9 @@ Route::get('/prakualifikasi', function () {
 Route::get('/sertifikat', function () {
     return view('sertifikat.index');
 })->middleware(['auth', 'verified'])->name('sertifikat');
+Route::get('/user', function () {
+    return view('users.index');
+})->middleware(['auth', 'verified'])->name('users');
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
