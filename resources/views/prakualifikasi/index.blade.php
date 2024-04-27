@@ -37,7 +37,13 @@
             <input type="search" name="search" class="form-control form-control-solid w-250px ps-15" id="search" placeholder="Cari.." />
         </div>
         <div class="d-flex flex-stack">
-            <button type="button" class="btn btn-primary ms-2" data-toggle="modal" data-target="#StatusModal">Simpan</button>
+            {{-- <button type="button" class="btn btn-primary ms-2" data-toggle="modal" data-target="#StatusModal">Simpan</button> --}}
+            <button type="button" class="btn btn-success" href="#" data-toggle="modal" data-target="#kategoriModal">
+                + Kategori
+            </button>
+            <button type="button" class="btn btn-success mx-2" href="#" data-toggle="modal" data-target="#kriteriaModal">
+                + Kriteria
+            </button>
         </div>
     </div>
     <div class="card-body pt-0">
@@ -45,13 +51,14 @@
             <thead>
                 <tr class="fw-semibold fs-6 text-muted">
                     <th class="text-start">No</th>
-                    <th class="text-center" colspan="5">Prakualifikasi</th>
+                    <th class="text-center" >Prakualifikasi</th>
+                    <th class="text-center" >Actions</th>
                 </tr>
             </thead>
             <thead>
-                <tr class="fw-semibold fs-6 text-muted">
+                <tr class="fw-semibold fs-6 text-white bg-success">
                     <th class="text-start" style="width:10%;">1</th>
-                    <th class="text-start">Kebijakan</th>
+                    <th class="text-start" colspan="2">Kebijakan</th>
                 </tr>
             </thead>
             <tbody class="fw-semibold text-gray-600">
@@ -74,7 +81,7 @@
                         <div class="upload-btn-wrapper" style="position: relative;overflow: hidden;">
                             <button class="btn btn-outline-success mt-2 hover"> + Tambah Lampiran</button>
                             <input type="file" name="myfile" style=" font-size: 100px; position: absolute; left: 0; top: 0;opacity: 0;"/>
-                          </div>
+                        </div>
                     </td>
                 </tr>
                 <tr>
@@ -96,12 +103,77 @@
                         <div class="upload-btn-wrapper" style="position: relative;overflow: hidden;">
                             <button class="btn btn-outline-success mt-2 hover"> + Tambah Lampiran</button>
                             <input type="file" name="myfile" style=" font-size: 100px; position: absolute; left: 0; top: 0;opacity: 0;"/>
-                          </div>
+                        </div>
                     </td>
                 </tr>
             </tbody>
         </table>
     </div>
 </div>
-
+<div class="modal fade" id="kategoriModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Kategori</h5>
+                <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">×</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form action="">
+                    <label for="kategori">Kategori</label>
+                    <input type="select" name="kategori" class="form-control">
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-secondary" type="button" data-dismiss="modal">Batal</button>
+                <a class="btn btn-primary" href="#">Simpan</a>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal fade" id="kriteriaModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Kriteria</h5>
+                <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">×</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form action="">
+                    <div class="row mb-2">
+                        <div class="col-xl-3">
+                            <label for="kriteria" class="form-label">Kategori</label>
+                        </div>
+                        <div class="col-lg">
+                            <select name="kriteria" id="kriteria" class="form-control" data-control="select" data-placeholder="Pilih Kategori">
+                                <option value="">1</option>
+                                <option value="">2</option>
+                                <option value="">3</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="row mb-2">
+                        <div class="col-xl-3">
+                            <label for="kriteria" class="form-label">Kriteria</label>
+                        </div>
+                        <div class="col-lg">
+                            <input type="text" name="kriteria" id="kriteria" class="form-control" >
+                            </input>
+                        </div>
+                    </div>
+                    {{-- <label for="kategori">Kategori</label>
+                    <select name="kategori" class="form-control">
+                    <input type="text" name="kriteria" class="form-control"> --}}
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-secondary" type="button" data-dismiss="modal">Batal</button>
+                <a class="btn btn-primary" href="#">Simpan</a>
+            </div>
+        </div>
+    </div>
+</div>
 @endsection

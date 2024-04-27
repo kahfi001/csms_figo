@@ -25,6 +25,10 @@
         <a class="nav-link" href={{ route('sertifikat') }}>
             <span>SERTIFIKAT</span></a>
     </li>
+    <li class="nav-item {{ Route::is('user') ? 'active' : '' }} ">
+        <a class="nav-link" href={{ route('user') }}>
+            <span>USER</span></a>
+    </li>
 
 
     <div class="text-center d-none d-md-inline">
