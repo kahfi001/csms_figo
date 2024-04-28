@@ -1,6 +1,6 @@
 <x-app-layout >
     @section('content')
-        <div class="row align-item-center h-100" >
+        <div class="row align-item-center " >
             <div class="col-xl-3">
                 <a href="{{ route('perusahaan') }}">
                     <div class="card  border-success hoverable card-xl-stretch mb-xl-8">
