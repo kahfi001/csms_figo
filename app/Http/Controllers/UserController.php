@@ -14,6 +14,7 @@ class UserController extends Controller
         if ($request->ajax()) {
             $users = User::all();
             return DataTables::of($users)
+                ->addIndexColumn()
                 ->make(true);
         }
 

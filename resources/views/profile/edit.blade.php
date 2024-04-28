@@ -1,69 +1,34 @@
 @extends('layouts.app')
-{{-- @section('page-title')
-    <div class="page-title d-flex flex-column justify-content-center flex-wrap me-3">
-        <h1 class="page-heading d-flex text-dark fw-bold flex-column justify-content-center my-0">
-            Dashboard >
-        </h1>
-    </div>
-@endsection --}}
-@section('page-title')
-    <div class="page-title d-flex flex-column  flex-wrap me-3  border border-success rounded-pill  ">
-        <nav aria-label="breadcrumb">
-            <ol class="breadcrumb mb-0 rounded-pill ">
-                <li class="breadcrumb-item"><a href="{{ route('dashboard') }}">Dashboard</a></li>
-                <li class="breadcrumb-item active" aria-current="page">Profile</li>
-                <li class="ml-auto">{{ \Carbon\Carbon::now()->format('D, d F Y') }}</li>
-            </ol>
-        </nav>
-    </div>
-    @endsection
+@section('title', 'Profile Details')
 @section('content')
-<div class="card card-docs flex-row-fluid mt-4 border border-success " style="border-radius: 3rem;">
-    <div class="card-body p-9 ">
-        <div class="row mb-6 mb-2">
-            <label class="col-lg-2 col-form-label fw-semibold fs-6">Profile</label>
+<div class="card mt-11">
+    <div class="card-header border-0 cursor-pointer" role="button" data-bs-toggle="collapse" data-bs-target="#kt_account_profile_details" aria-expanded="true" aria-controls="kt_account_profile_details">
+        <div class="card-title m-0">
+            <h3 class="fw-bold m-0">Account</h3>
         </div>
-        <div class="row mb-6 mb-2">
-            <label class="col-lg-2 col-form-label required fw-semibold fs-6">NPWP</label>
-            <div class="col-lg-10 fv-row">
-                <input readonly type="text" name="name" class="form-control form-control-solid" placeholder="Company name" value="{{ auth()->user()->name }}" />
+    </div>
+    <div id="kt_account_settings_profile_details" class="collapse show">
+        <form id="kt_account_profile_details_form" method="POST" enctype="multipart/form-data" action="" class="form">
+            @csrf
+            <div class="card-body border-top p-9">
+                <div class="row mb-6">
+                    <label class="col-lg-4 col-form-label required fw-semibold fs-6">Nama Lengkap</label>
+                    <div class="col-lg-8 fv-row">
+                        <input readonly type="text" name="name" class="form-control form-control-lg form-control-solid" placeholder="Company name" value="" />
+                    </div>
+                </div>
+                <div class="row mb-6">
+                    <label class="col-lg-4 col-form-label required fw-semibold fs-6">Email</label>
+                    <div class="col-lg-8 fv-row">
+                        <input readonly type="email" name="email" class="form-control form-control-lg form-control-solid" placeholder="Email name" value="" />
+                    </div>
+                </div>
+				<div class="card-footer d-flex justify-content-end py-6 px-9">
+					<button type="reset" class="btn btn-light btn-active-light-primary me-2">Discard</button>
+					<button type="submit" class="btn btn-primary" id="kt_account_profile_details_submit">Save Changes</button>
+				</div>
             </div>
-        </div>
-        <div class="row mb-6 mb-2">
-            <label class="col-lg-2 col-form-label required fw-semibold fs-6">Nama Perusahaan</label>
-            <div class="col-lg-10 fv-row">
-                <input readonly type="text" name="perusahaan" class="form-control form-control-solid" placeholder="Nama Perusahaan" value="" />
-            </div>
-        </div>
-        <div class="row mb-6 mb-2">
-            <label class="col-lg-2 col-form-label required fw-semibold fs-6">Email</label>
-            <div class="col-lg-10 fv-row">
-                <input readonly type="email" name="email" class="form-control form-control-solid" placeholder="Email name" value="{{ auth()->user()->email }}" />
-            </div>
-        </div>
-        <div class="row mb-6 mb-2">
-            <label class="col-lg-2 col-form-label required fw-semibold fs-6">Mobile Phone</label>
-            <div class="col-lg-10 fv-row">
-                <input readonly type="email" name="email" class="form-control form-control-solid" placeholder="mobile phone" value="" />
-            </div>
-        </div>
-        <div class="row mb-6 mb-2">
-            <label class="col-lg-2 col-form-label required fw-semibold fs-6">No. TDP</label>
-            <div class="col-lg-10 fv-row">
-                <input readonly type="email" name="email" class="form-control form-control-solid" placeholder="No TDP" value="" />
-            </div>
-        </div>
-        <div class="row mb-6 mb-2">
-            <label class="col-lg-2 col-form-label required fw-semibold fs-6">No. SIUP</label>
-            <div class="col-lg-10 fv-row">
-                <input readonly type="email" name="email" class="form-control form-control-solid" placeholder="No SIUP" value="" />
-            </div>
-        </div>
-        <div class="card-footer d-flex justify-content-end py-6 px-9">
-            <button type="reset" class="btn btn-light btn-active-light-primary me-2">Batal</button>
-            <button type="submit" class="btn btn-primary" id="kt_account_profile_details_submit">Simpan</button>
-        </div>
+        </form>
     </div>
 </div>
-
 @endsection

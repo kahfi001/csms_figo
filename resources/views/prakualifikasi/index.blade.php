@@ -1,11 +1,5 @@
 @extends('layouts.app')
-{{-- @section('page-title')
-    <div class="page-title d-flex flex-column justify-content-center flex-wrap me-3">
-        <h1 class="page-heading d-flex text-dark fw-bold flex-column justify-content-center my-0">
-            Dashboard >
-        </h1>
-    </div>
-@endsection --}}
+
 @section('page-title')
     <div class="page-title d-flex flex-column  flex-wrap me-3  border border-success rounded-pill  ">
         <nav aria-label="breadcrumb">
@@ -18,6 +12,27 @@
     </div>
     @endsection
 @section('content')
+
+<div class="card card-docs flex-row-fluid mt-5 p-3 border-success" style="border-radius: 1.35rem">
+    <div class="card-header d-flex justify-content-between">
+        <div class="d-flex align-items-center position-relative my-1 mb-2 mb-md-0">
+            <input type="search" name="search" class="form-control form-control-solid w-250px ps-15" id="search" placeholder="Cari.." />
+        </div>
+    </div>
+    <div class="card-body pt-0">
+
+        <table id="verifikasi-table " class="table align-middle table-row-dashed fs-6 gy-5">
+            <thead> 
+                <th>No</th>
+                <th>Nama Perusahaan</th>
+                <th>Tanggal pendaftaran</th>
+                <th>Status</th>
+                <th>Actions</th>
+            </thead>
+        </table>
+    </div>
+</div>
+
 <div class="card card-docs flex-row-fluid mt-5 p-3 border-success" style="border-radius: 1.35rem">
     <table class="table align-middle m-2 border">
         <tr>
@@ -47,7 +62,7 @@
         </div>
     </div>
     <div class="card-body pt-0">
-        <table id="prakualifikasi-table" class="table align-middle table-row-dashed fs-6 gy-5 prakualifikasi-tables">
+        <table id="prakualifikasi-table" class="table align-middle table-row-dashed fs-6 gy-5">
             <thead>
                 <tr class="fw-semibold fs-6 text-muted">
                     <th class="text-start">No</th>
@@ -107,6 +122,13 @@
                     </td>
                 </tr>
             </tbody>
+            <tfoot>
+                <tr>
+                    <td></td>
+                    <td></td>
+                    <td style="text-align: right;"><button type="button" class="btn btn-primary" aria-colspan="">Simpan</button></td>
+                </tr>
+            </tfoot>
         </table>
     </div>
 </div>
@@ -177,3 +199,23 @@
     </div>
 </div>
 @endsection
+@push('scripts')
+    <script>
+        $(document).ready( function () {
+            $('#verifikasi-table').DataTable({
+                processing: true,
+                serverSide: true,
+                ordering: true,
+                stateSave: false,  
+                ajax: "{{ url('prakualifikasi') }}",
+                columns: [  
+                            { data: 'DT_RowIndex', name: 'DT_RowIndex' },
+                            { data: 'name', name: 'name' },
+                            { data: 'created_at', name: 'created_at' },
+                            { data: 'status', name: 'status' },
+                        ]
+            });
+        });
+    </script>
+    
+@endpush

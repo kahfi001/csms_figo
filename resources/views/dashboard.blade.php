@@ -2,7 +2,7 @@
     @section('content')
         <div class="row align-item-center h-100" >
             <div class="col-xl-3">
-                <a href="{{ route('profile.edit') }}">
+                <a href="{{ route('perusahaan') }}">
                     <div class="card  border-success hoverable card-xl-stretch mb-xl-8">
                         <div class="card-header bg-white align-self-center">
                             <i class="fa fa-light fa-address-card" style="font-size: 5rem; color:#999999"></i>

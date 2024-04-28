@@ -13,13 +13,17 @@
         <a class="nav-link" href={{ route('dashboard') }}>
             <span>HOME</span></a>
     </li>
-    <li class="nav-item {{ Route::is('profile.edit') ? 'active' : '' }} ">
-        <a class="nav-link " href={{ route('profile.edit') }}>
+    <li class="nav-item {{ Route::is('perusahaan') ? 'active' : '' }} ">
+        <a class="nav-link " href={{ route('perusahaan') }}>
             <span>PROFILE</span></a>
     </li>
     <li class="nav-item {{ Route::is('prakualifikasi') ? 'active' : '' }}">
         <a class="nav-link" href={{ route('prakualifikasi') }}>
             <span>PRAKUALIFIKASI</span></a>
+    </li>
+    <li class="nav-item {{ Route::is('berita-acara') ? 'active' : '' }}">
+        <a class="nav-link" href={{ route('berita-acara') }}>
+            <span>BERITA ACARA</span></a>
     </li>
     <li class="nav-item {{ Route::is('sertifikat') ? 'active' : '' }} ">
         <a class="nav-link" href={{ route('sertifikat') }}>
