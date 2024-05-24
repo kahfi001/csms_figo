@@ -21,6 +21,7 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
+        'role',
     ];
 
     /**
@@ -42,4 +43,14 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
         'password' => 'hashed',
     ];
+
+    public function vendorDetail()
+    {
+        return $this->hasOne(VendorDetail::class);
+    }
+
+    public function prequalification()
+    {
+        return $this->hasMany(Prequalification::class);
+    }
 }

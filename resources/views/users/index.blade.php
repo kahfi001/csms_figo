@@ -9,41 +9,62 @@
             </ol>
         </nav>
     </div>
-    @endsection
+@endsection
 @section('content')
-<div class="card card-docs flex-row-fluid mt-5 p-3 border-success" style="border-radius: 1.35rem">
-    <div class="card-body pt-0">
-        <table  id="users-table" class="table align-middle table-row-dashed  w-100 ">
-            <thead> 
-                <th>No</th>
-                <th>Name</th>
-                <th>Email</th>
-                <th>Role</th>
-                <th>Actions</th>
-            </thead>
-        </table>
+    <div class="card card-docs flex-row-fluid mt-5 p-3 border-success" style="border-radius: 1.35rem">
+        <div class="card-body pt-0">
+            <a href="{{ route('add-user') }}" class="btn btn-secondary mb-3">
+                Tambahkan User
+            </a>
+            <table id="users-table" class="table align-middle table-row-dashed  w-100 ">
+                <thead>
+                    <th>No</th>
+                    <th>Name</th>
+                    <th>Email</th>
+                    <th>Role</th>
+                    <th>Actions</th>
+                </thead>
+            </table>
+        </div>
     </div>
-</div>
 @endsection
 @push('scripts')
     <script>
-        $(document).ready( function () {
+        $(document).ready(function() {
             $('#users-table').DataTable({
                 processing: true,
                 serverSide: true,
                 ordering: true,
                 stateSave: false,
-                
+
                 ajax: "{{ url('user') }}",
-                columns: [  
-                            { data: 'DT_RowIndex', name: 'DT_RowIndex' },
-                            { data: 'name', name: 'name' },
-                            { data: 'email', name: 'email' },
-                            { data: 'role', name: 'role' },
-                        ]
+                columns: [{
+                        data: 'DT_RowIndex',
+                        name: 'DT_RowIndex'
+                    },
+                    {
+                        data: 'name',
+                        name: 'name'
+                    },
+                    {
+                        data: 'email',
+                        name: 'email'
+                    },
+                    {
+                        data: 'role',
+                        name: 'role'
+                    },
+                    {
+                        data: 'action',
+                        name: 'action',
+                        orderable: false,
+                        searchable: false,
+                        width: '15%'
+                    },
+                ]
             });
         });
-            
+
         $('#search').on('keyup', function() {
             datatable.search(this.value).draw();
         });

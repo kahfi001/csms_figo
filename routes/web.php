@@ -1,7 +1,11 @@
 <?php
 
+use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\CriteriaController;
+use App\Http\Controllers\PrequalificationController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\VendorDetailController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -22,12 +26,18 @@ Route::get('/', function () {
 Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
-Route::get('/perusahaan', function () {
-    return view('perusahaan.index');
-})->middleware(['auth', 'verified'])->name('perusahaan');
-Route::get('/prakualifikasi', function () {
-    return view('prakualifikasi.index');
-})->middleware(['auth', 'verified'])->name('prakualifikasi');
+Route::get('/perusahaan', [VendorDetailController::class, 'index'])->middleware(['auth', 'verified'])->name('perusahaan');
+Route::post('/perusahaan', [VendorDetailController::class, 'store'])->middleware(['auth', 'verified'])->name('storePerusahaan');
+Route::get('/prakualifikasi', [PrequalificationController::class, 'index'])->middleware(['auth', 'verified'])->name('prakualifikasi');
+Route::get('/prakualifikasi/{id}', [PrequalificationController::class, 'show'])->middleware(['auth', 'verified'])->name('detail-prakualifikasi');
+Route::post('/prakualifikasi', [PrequalificationController::class, 'store'])->middleware(['auth', 'verified'])->name('store-prakualifikasi');
+Route::post('/storeScore', [PrequalificationController::class, 'storeScore'])->middleware(['auth', 'verified'])->name('store-score');
+Route::get('/kategori-prakualifikasi', [CategoryController::class, 'index'])->name('soal-prakualifikasi');
+Route::post('/kategori', [CategoryController::class, 'store'])->name('store-kategori');
+Route::post('/kriteria', [CriteriaController::class, 'store'])->name('store-kriteria');
+Route::delete('/kategori/{id}', [CategoryController::class, 'destroy'])->name('delete-kategori');
+Route::delete('/kriteria/{id}', [CriteriaController::class, 'destroy'])->name('delete-kriteria');
+
 Route::get('/sertifikat', function () {
     return view('sertifikat.index');
 })->middleware(['auth', 'verified'])->name('sertifikat');
@@ -42,6 +52,9 @@ Route::get('/berita/print', function () {
 // })->middleware(['auth', 'verified'])->name('users');
 
 Route::get('/user', [UserController::class, 'index'])->name('users');
+Route::post('/user', [UserController::class, 'store'])->name('store-user');
+Route::get('/user/create', [UserController::class, 'add'])->name('add-user');
+Route::delete('/user/{id}', [UserController::class, 'destroy'])->name('delete-user');
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
