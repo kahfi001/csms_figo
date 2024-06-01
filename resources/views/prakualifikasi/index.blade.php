@@ -76,6 +76,9 @@
                                                     <label class="form-check-label"
                                                         for="inlineradio3_{{ $criteria->id }}">N/a</label>
                                                 </div>
+                                                <div class="form-check p-0">
+                                                    <textarea class="form-control w-50" placeholder="keterangan" name="responses[{{ $criteria->id }}][information]" id="" rows="1" required></textarea>
+                                                </div>
                                                 <div class="upload-btn-wrapper"
                                                     style="position: relative; overflow: hidden;">
                                                     <button class="btn btn-outline-success mt-2 hover"> + Tambah

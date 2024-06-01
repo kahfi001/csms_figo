@@ -55,6 +55,7 @@ class PrequalificationController extends Controller
         $validatedData = $request->validate([
             'responses' => 'required|array',
             'responses.*.response' => 'required|in:ya,tidak,na',
+            'responses.*.information' => 'required',
             'responses.*.attachment' => 'nullable|file|mimes:jpeg,png,pdf,doc,docx|max:2048'
         ]);
 
@@ -77,6 +78,7 @@ class PrequalificationController extends Controller
                 'prequalification_id' => $prequalification->id,
                 'criteria_id' => $criteria_id,
                 'response' => $response['response'],
+                'information' => $response['information'],
                 'attachment_path' => $attachmentPath,
             ]);
         }
