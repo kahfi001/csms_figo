@@ -18,7 +18,7 @@
             <input type="search" name="search" class="form-control form-control-solid w-250px ps-15" id="search" placeholder="Cari.." />
         </div>
         <div class="d-flex flex-stack">
-            <button type="button" class="btn btn-primary ms-2" data-toggle="modal" data-target="#StatusModal">Simpan</button>
+            <button type="button"  class="btn btn-primary ms-2" data-toggle="modal" data-target="#StatusModal"><a href="{{ route('sertifikat.print') }}">Download</a></button>
         </div>
     </div>
     <div class="card-body pt-0">

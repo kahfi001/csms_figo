@@ -16,6 +16,7 @@ return new class extends Migration
             $table->foreignId('prequalification_id')->nullable()->constrained('prequalifications')->onDelete('set null')->onUpdate('cascade');
             $table->foreignId('criteria_id')->nullable()->constrained('criterias')->onDelete('set null')->onUpdate('cascade');
             $table->string('response');
+            $table->string('information');
             $table->string('attachment_path')->nullable();
             $table->timestamps();
         });

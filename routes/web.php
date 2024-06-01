@@ -41,12 +41,16 @@ Route::delete('/kriteria/{id}', [CriteriaController::class, 'destroy'])->name('d
 Route::get('/sertifikat', function () {
     return view('sertifikat.index');
 })->middleware(['auth', 'verified'])->name('sertifikat');
+Route::get('/sertifikat/print', function () {
+    return view('sertifikat.print');
+})->middleware(['auth', 'verified'])->name('sertifikat.print');
 Route::get('/berita', function () {
     return view('berita-acara.index');
 })->middleware(['auth', 'verified'])->name('berita-acara');
 Route::get('/berita/print', function () {
     return view('berita-acara.print');
 })->middleware(['auth', 'verified'])->name('berita-acara.print');
+
 // Route::get('/user', function () {
 //     return view('users.index');
 // })->middleware(['auth', 'verified'])->name('users');
