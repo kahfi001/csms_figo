@@ -2,7 +2,7 @@
 
     <a href={{ route('dashboard') }} class="sidebar-brand d-flex align-items-center justify-content-center"
         href="index.html">
-        <img class="img-fluid w-50" src="{{ asset('sb-admin/img/logo.png') }}">
+        <img class="img-fluid" src="{{ asset('sb-admin/img/logo.png') }}">
     </a>
 
     <hr class="sidebar-divider my-0">

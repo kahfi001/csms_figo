@@ -26,6 +26,13 @@
                     </div>
                 </div>
                 <div class="row mb-2">
+                    <label class="col-lg-2 col-form-label required fw-semibold fs-6">Nama Direktur</label>
+                    <div class="col-lg-10 fv-row">
+                        <input type="text" name="direktur" class="form-control form-control-solid"
+                            placeholder="Nama Direktur" value="{{ $vendor->direktur ?? '' }}" />
+                    </div>
+                </div>
+                <div class="row mb-2">
                     <label class="col-lg-2 col-form-label required fw-semibold fs-6">Nama Perusahaan</label>
                     <div class="col-lg-10 fv-row">
                         <input type="text" name="nama_perusahaan" class="form-control form-control-solid"

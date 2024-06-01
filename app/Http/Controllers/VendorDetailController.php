@@ -42,6 +42,7 @@ class VendorDetailController extends Controller
             'phone' => 'required',
             'no_tdp' => 'required',
             'no_siup' => 'required',
+            'direktur' => 'required'
         ]);
 
         $validatedData['user_id'] = auth()->user()->id;
