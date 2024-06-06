@@ -9,31 +9,38 @@
             </ol>
         </nav>
     </div>
-    @endsection
+@endsection
 @section('content')
-
-<div class="card card-docs flex-row-fluid mt-5 p-3 border-success" style="border-radius: 1.35rem">
-    <div class="card-header d-flex justify-content-between">
-        <div class="d-flex align-items-center position-relative my-1 mb-2 mb-md-0">
-            <input type="search" name="search" class="form-control form-control-solid w-250px ps-15" id="search" placeholder="Cari.." />
-        </div>
-        <div class="d-flex flex-stack">
-            <button type="button"  class="btn btn-primary ms-2" data-toggle="modal" data-target="#StatusModal"><a href="{{ route('sertifikat.print') }}">Download</a></button>
+    <div class="card card-docs flex-row-fluid mt-5 p-3 border-success" style="border-radius: 1.35rem">
+        <div class="card-body pt-0">
+            <table class="table align-middle m-2 border">
+                <thead>
+                    <tr class="bg-success text-white">
+                        <th>No</th>
+                        <th>Nama Perusahaan</th>
+                        <th>Tanggal Pengajuan</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @forelse ($sertifikat as $sertifikat)
+                        <tr>
+                            <td>{{ $loop->iteration }}</td>
+                            <td>{{ $sertifikat->user->vendorDetail->nama_perusahaan }}</td>
+                            <td>{{ \Carbon\Carbon::parse($sertifikat->created_at)->format('d/m/Y') }}</td>
+                            <td>
+                                <a href="{{ URL::asset('storage/' . $sertifikat->certificate_path) }}"
+                                    class="btn btn-primary"
+                                    download="Sertifikat CSMS {{ $sertifikat->user->vendorDetail->nama_perusahaan }}.pdf">Download</a>
+                            </td>
+                        </tr>
+                    @empty
+                        <tr>
+                            <td colspan="4">Belum ada data</td>
+                        </tr>
+                    @endforelse
+                </tbody>
+            </table>
         </div>
     </div>
-    <div class="card-body pt-0">
-        <table class="table align-middle m-2 border">
-            <thead>
-                <tr class="bg-success text-white">
-                    <th>No</th>
-                    <th>Nama Perusahaan</th>
-                    <th>Tanggal Pengajuan</th>
-                    <th>Status</th>
-                </tr>
-            </thead>
-            <tbody></tbody>
-        </table>
-    </div>
-</div>
-
 @endsection

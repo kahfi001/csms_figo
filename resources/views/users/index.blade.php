@@ -4,7 +4,7 @@
         <nav aria-label="breadcrumb">
             <ol class="breadcrumb mb-0 rounded-pill ">
                 <li class="breadcrumb-item"><a href="{{ route('dashboard') }}">Dashboard</a></li>
-                <li class="breadcrumb-item active text-bold" aria-current="page">Prakualifikasi</li>
+                <li class="breadcrumb-item active text-bold" aria-current="page">User</li>
                 <li class="ml-auto">{{ \Carbon\Carbon::now()->format('D, d F Y') }}</li>
             </ol>
         </nav>

@@ -53,4 +53,13 @@ class User extends Authenticatable
     {
         return $this->hasMany(Prequalification::class);
     }
+
+    public function beritaAcara()
+    {
+        return $this->hasMany(PrequalificationMinutes::class);
+    }
+    public function sertifikat()
+    {
+        return $this->hasMany(Certificate::class);
+    }
 }

@@ -84,6 +84,10 @@
                                                     <label class="form-check-label"
                                                         for="inlineradio3_{{ $criteria->id }}">N/a</label>
                                                 </div>
+                                                <div class="form-check p-0 mb-3">
+                                                    <textarea class="form-control w-50" name="responses[{{ $criteria->id }}][description]" id="" rows="1"
+                                                        disabled>{{ $userResponse->description }}</textarea>
+                                                </div>
                                                 <div class="upload-btn-wrapper"
                                                     style="position: relative; overflow: hidden;">
                                                     @if ($userResponse->attachment_path != '')

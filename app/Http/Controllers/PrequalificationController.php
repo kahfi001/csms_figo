@@ -6,7 +6,9 @@ use App\Models\Prequalification;
 use App\Http\Requests\StorePrequalificationRequest;
 use App\Http\Requests\UpdatePrequalificationRequest;
 use App\Models\Category;
+use App\Models\PrequalificationMinutes;
 use App\Models\Result;
+use App\Models\User;
 use App\Models\UserResponse;
 use Illuminate\Http\Request;
 use Yajra\DataTables\Facades\DataTables;
@@ -55,7 +57,7 @@ class PrequalificationController extends Controller
         $validatedData = $request->validate([
             'responses' => 'required|array',
             'responses.*.response' => 'required|in:ya,tidak,na',
-            'responses.*.information' => 'required',
+            'responses.*.description' => 'nullable',
             'responses.*.attachment' => 'nullable|file|mimes:jpeg,png,pdf,doc,docx|max:2048'
         ]);
 
@@ -78,7 +80,7 @@ class PrequalificationController extends Controller
                 'prequalification_id' => $prequalification->id,
                 'criteria_id' => $criteria_id,
                 'response' => $response['response'],
-                'information' => $response['information'],
+                'description' => $response['description'],
                 'attachment_path' => $attachmentPath,
             ]);
         }
@@ -123,6 +125,18 @@ class PrequalificationController extends Controller
             'user_id' => $prequalificationData->user_id,
             'score' => $finalScore
         ]);
+
+        $manager = User::where('role', 'manager')->first();
+
+        $berita = PrequalificationMinutes::create([
+            'user_id' => $prequalificationData->user_id,
+            'hse_name' => auth()->user()->name,
+            'manager_name' => $manager->name,
+            'score' => $finalScore,
+            'prequalification_id' => $prequalification_id
+        ]);
+
+        PrintController::beritaAcara($berita->id);
 
         return redirect()->route('prakualifikasi')->with('success', 'Responses saved successfully.');
     }

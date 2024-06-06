@@ -30,7 +30,7 @@
     @endif
     @if (auth()->user()->role != 'admin')
         <li class="nav-item {{ Route::is('berita-acara') ? 'active' : '' }}">
-            <a class="nav-link" href={{ route('berita-acara') }}>
+            <a class="nav-link" href={{ route('berita-acara.index') }}>
                 <span>BERITA ACARA</span></a>
         </li>
     @endif

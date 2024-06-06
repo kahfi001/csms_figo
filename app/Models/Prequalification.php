@@ -19,4 +19,13 @@ class Prequalification extends Model
     {
         return $this->hasMany(UserResponse::class);
     }
+
+    public function beritaAcara()
+    {
+        return $this->hasOne(PrequalificationMinutes::class);
+    }
+    public function sertifikat()
+    {
+        return $this->hasOne(Certificate::class);
+    }
 }

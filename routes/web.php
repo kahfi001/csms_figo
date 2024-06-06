@@ -1,11 +1,16 @@
 <?php
 
 use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\CertificateController;
 use App\Http\Controllers\CriteriaController;
 use App\Http\Controllers\PrequalificationController;
+use App\Http\Controllers\PrequalificationMinutesController;
+use App\Http\Controllers\PrintController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\VendorDetailController;
+use App\Models\Certificate;
+use App\Models\PrequalificationMinutes;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -23,6 +28,9 @@ Route::get('/', function () {
     return view('dashboard');
 })->middleware(['auth', 'verified']);
 
+Route::get('print-berita-acara/{id}', [PrintController::class, 'beritaAcara']);
+Route::get('print-sertifikat/{id}', [PrintController::class, 'sertifikat']);
+
 Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
@@ -38,15 +46,19 @@ Route::post('/kriteria', [CriteriaController::class, 'store'])->name('store-krit
 Route::delete('/kategori/{id}', [CategoryController::class, 'destroy'])->name('delete-kategori');
 Route::delete('/kriteria/{id}', [CriteriaController::class, 'destroy'])->name('delete-kriteria');
 
-Route::get('/sertifikat', function () {
-    return view('sertifikat.index');
-})->middleware(['auth', 'verified'])->name('sertifikat');
+Route::get('/sertifikat', [CertificateController::class, 'index'])->middleware(['auth', 'verified'])->name('sertifikat');
 Route::get('/sertifikat/print', function () {
     return view('sertifikat.print');
 })->middleware(['auth', 'verified'])->name('sertifikat.print');
-Route::get('/berita', function () {
-    return view('berita-acara.index');
-})->middleware(['auth', 'verified'])->name('berita-acara');
+Route::resource('/berita', PrequalificationMinutesController::class)->middleware(['auth', 'verified'])->names([
+    'index' => 'berita-acara.index',
+    'create' => 'berita-acara.create',
+    'store' => 'berita-acara.store',
+    'show' => 'berita-acara.show',
+    'edit' => 'berita-acara.edit',
+    'update' => 'berita-acara.update',
+    'destroy' => 'berita-acara.destroy',
+]);
 Route::get('/berita/print', function () {
     return view('berita-acara.print');
 })->middleware(['auth', 'verified'])->name('berita-acara.print');

@@ -77,7 +77,8 @@
                                                         for="inlineradio3_{{ $criteria->id }}">N/a</label>
                                                 </div>
                                                 <div class="form-check p-0">
-                                                    <textarea class="form-control w-50" placeholder="keterangan" name="responses[{{ $criteria->id }}][information]" id="" rows="1" required></textarea>
+                                                    <textarea class="form-control w-50" placeholder="keterangan" name="responses[{{ $criteria->id }}][description]"
+                                                        id="" rows="1"></textarea>
                                                 </div>
                                                 <div class="upload-btn-wrapper"
                                                     style="position: relative; overflow: hidden;">

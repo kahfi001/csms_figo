@@ -11,12 +11,16 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('user_responses', function (Blueprint $table) {
+        Schema::create('certificates', function (Blueprint $table) {
             $table->id();
+            $table->string('certificate_number')->nullable();
+            $table->foreignId('user_id')
+                ->nullable()
+                ->constrained('users')
+                ->onDelete('cascade')
+                ->onUpdate('cascade');
             $table->foreignId('prequalification_id')->nullable()->constrained('prequalifications')->onDelete('set null')->onUpdate('cascade');
-            $table->foreignId('criteria_id')->nullable()->constrained('criterias')->onDelete('set null')->onUpdate('cascade');
-            $table->string('response');
-            $table->string('attachment_path')->nullable();
+            $table->string('certificate_path')->nullable();
             $table->timestamps();
         });
     }
@@ -26,6 +30,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('user_responses');
+        Schema::dropIfExists('certificates');
     }
 };
