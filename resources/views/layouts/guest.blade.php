@@ -11,7 +11,7 @@
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.bunny.net">
     <link href="https://fonts.bunny.net/css?family=figtree:400,500,600&display=swap" rel="stylesheet" />
-    <link href="{{ asset('sb-admin/css/app-CWaCKBOE.css') }}" rel="stylesheet" type="text/css" />
+    <link href="{{ URL::asset('sb-admin/css/app-CWaCKBOE.css') }}" rel="stylesheet" type="text/css" />
     <!-- Scripts -->
     {{-- @vite(['resources/css/app.css', 'resources/js/app.js']) --}}
 </head>
@@ -29,7 +29,7 @@
             {{ $slot }}
         </div>
     </div>
-    <script src={{ asset('sb-admin/js/app-BtUpmekk.js') }}></script>
+    <script src={{ URL::asset('sb-admin/js/app-BtUpmekk.js') }}></script>
 </body>
 
 </html>
