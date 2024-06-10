@@ -36,7 +36,8 @@
         <div id="content-wrapper" class="d-flex flex-column">
 
             <!-- Main Content -->
-            <div id="content" style="background-image: url('sb-admin/img/bg-content.jpg'); background-size:cover">
+            <div id="content"
+                style="background-image: url('{{ URL::asset('sb-admin/img/bg-content.jpg') }}'); background-size:cover">
 
                 @include('layouts.header')
 
