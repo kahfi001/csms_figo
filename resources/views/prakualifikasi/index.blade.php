@@ -14,7 +14,7 @@
 @section('content')
     @if (auth()->user()->role == 'vendor')
         <div class="card card-docs flex-row-fluid mt-5 p-3 border-success" style="border-radius: 1.35rem">
-            @if ($lastPrakualifikasi->is_accepted == 0)
+            @if ($lastPrakualifikasi->is_accepted ?? 1 == 0)
                 <h5 class="text-center">Silahkan Menuggu Prakualifikasi Anda sebelumnya disetujui !</h5>
             @else
                 @if (count($category) > 0)
