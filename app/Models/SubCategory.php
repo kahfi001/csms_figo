@@ -5,18 +5,18 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Criteria extends Model
+class SubCategory extends Model
 {
     use HasFactory;
     protected $guarded = ['id'];
 
-    public function subCategory()
+    public function category()
     {
-        return $this->belongsTo(SubCategory::class);
+        return $this->belongsTo(Category::class);
     }
 
-    public function userresponse()
+    public function criterias()
     {
-        return $this->hasMany(UserResponse::class);
+        return $this->hasMany(Criteria::class);
     }
 }

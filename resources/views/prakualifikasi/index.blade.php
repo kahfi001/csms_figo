@@ -14,98 +14,148 @@
 @section('content')
     @if (auth()->user()->role == 'vendor')
         <div class="card card-docs flex-row-fluid mt-5 p-3 border-success" style="border-radius: 1.35rem">
-            @if (count($category) > 0)
-                <table class="table align-middle m-2 border">
-                    <tr>
-                        <td>Pilih Tidak</td>
-                        <td>Tidak perlu melampirkan dokumen</td>
-                    </tr>
-                    <tr>
-                        <td colspan="2">Pilih Ya</td>
-                    </tr>
-                    <tr>
-                        <td>Pilih N/a</td>
-                        <td>Tidak perlu lampirkan dokumen</td>
-                    </tr>
-                </table>
-                <div class="card-body pt-0">
-                    <table id="prakualifikasi-table" class="table align-middle table-row-dashed fs-6 gy-5">
-                        <thead>
-                            <tr class="fw-semibold fs-6 text-muted">
-                                <th class="text-start">No</th>
-                                <th class="text-center">Prakualifikasi</th>
-                            </tr>
-                        </thead>
-                        <form action="{{ route('store-prakualifikasi') }}" method="post" enctype="multipart/form-data">
-                            @csrf
-                            <tbody class="fw-semibold text-gray-600">
-                                @foreach ($category as $keyCategory => $category)
-                                    @php
-                                        $keyCategory++;
-                                    @endphp
-                                    <tr class="fw-semibold fs-6 text-white bg-success">
-                                        <td class="text-start" style="width:10%;">{{ $keyCategory }}</td>
-                                        <td class="text-start">{{ $category->name }}</td>
-                                    </tr>
-                                    @foreach ($category->criteria as $key => $criteria)
-                                        @php
-                                            $key++;
-                                        @endphp
-                                        <tr>
-                                            <td>{{ $keyCategory . '.' . $key }}</td>
-                                            <td>
-                                                <p>{{ $criteria->name }}</p>
-                                                <div class="form-check form-check-inline">
-                                                    <input class="form-check-input" type="radio"
-                                                        id="inlineradio1_{{ $criteria->id }}"
-                                                        name="responses[{{ $criteria->id }}][response]" value="ya">
-                                                    <label class="form-check-label"
-                                                        for="inlineradio1_{{ $criteria->id }}">Ya</label>
-                                                </div>
-                                                <div class="form-check form-check-inline">
-                                                    <input class="form-check-input" type="radio"
-                                                        id="inlineradio2_{{ $criteria->id }}"
-                                                        name="responses[{{ $criteria->id }}][response]" value="tidak">
-                                                    <label class="form-check-label"
-                                                        for="inlineradio2_{{ $criteria->id }}">Tidak</label>
-                                                </div>
-                                                <div class="form-check form-check-inline">
-                                                    <input class="form-check-input" type="radio"
-                                                        id="inlineradio3_{{ $criteria->id }}"
-                                                        name="responses[{{ $criteria->id }}][response]" value="na">
-                                                    <label class="form-check-label"
-                                                        for="inlineradio3_{{ $criteria->id }}">N/a</label>
-                                                </div>
-                                                <div class="form-check p-0">
-                                                    <textarea class="form-control w-50" placeholder="keterangan" name="responses[{{ $criteria->id }}][description]"
-                                                        id="" rows="1"></textarea>
-                                                </div>
-                                                <div class="upload-btn-wrapper"
-                                                    style="position: relative; overflow: hidden;">
-                                                    <button class="btn btn-outline-success mt-2 hover"> + Tambah
-                                                        Lampiran</button>
-                                                    <input type="file" name="responses[{{ $criteria->id }}][attachment]"
-                                                        style="font-size: 100px; position: absolute; left: 0; top: 0; opacity: 0;">
-                                                </div>
-                                            </td>
-                                        </tr>
-                                    @endforeach
-                                @endforeach
-                            </tbody>
-                            <tfoot>
-                                <tr>
-                                    <td></td>
-                                    <td style="text-align: right;"><button type="submit" class="btn btn-primary"
-                                            aria-colspan="">Simpan</button></td>
-                                </tr>
-                            </tfoot>
-                        </form>
-
-                    </table>
-                </div>
+            @if ($lastPrakualifikasi->is_accepted == 0)
+                <h5 class="text-center">Silahkan Menuggu Prakualifikasi Anda sebelumnya disetujui !</h5>
             @else
-                <h5 class="text-center">Prakualifikasi Belum dibuka!</h5>
+                @if (count($category) > 0)
+                    <table class="table align-middle m-2 border">
+                        <tr>
+                            <td>Pilih Tidak</td>
+                            <td>Tidak perlu melampirkan dokumen</td>
+                        </tr>
+                        <tr>
+                            <td colspan="2">Pilih Ya</td>
+                        </tr>
+                        <tr>
+                            <td>Pilih N/a</td>
+                            <td>Tidak perlu lampirkan dokumen</td>
+                        </tr>
+                    </table>
+                    <div class="card-body pt-0">
+                        <table id="prakualifikasi-table" class="table align-middle table-row-dashed fs-6 gy-5">
+                            <thead>
+                                <tr class="fw-semibold fs-6 text-muted">
+                                    <th class="text-start">No</th>
+                                    <th class="text-center">Prakualifikasi</th>
+                                </tr>
+                            </thead>
+                            <form action="{{ route('store-prakualifikasi') }}" method="post" enctype="multipart/form-data">
+                                @csrf
+                                <tbody class="fw-semibold text-gray-600">
+                                    @foreach ($category as $keyCategory => $cat)
+                                        @php
+                                            $keyCategory++;
+                                        @endphp
+                                        <tr class="fw-semibold fs-6 text-white bg-success">
+                                            <td class="text-start" style="width:10%;">{{ $keyCategory }}</td>
+                                            <td class="text-start">{{ $cat->name }}</td>
+                                        </tr>
+                                        @if (isset($cat->subCategory) && count($cat->subCategory) > 0)
+                                            @foreach ($cat->subCategory as $key => $subCategory)
+                                                @php
+                                                    $key++;
+                                                @endphp
+                                                <tr>
+                                                    <td style="padding-left: 3rem">{{ $keyCategory . '.' . $key }}</td>
+                                                    <td>
+                                                        <p>{{ $subCategory->name }}</p>
+                                                    </td>
+                                                </tr>
+                                                @if (isset($subCategory->criterias) && count($subCategory->criterias) > 0)
+                                                    @foreach ($subCategory->criterias as $criteriaKey => $criteria)
+                                                        @php
+                                                            $criteriaKey++;
+                                                        @endphp
+                                                        <tr>
+                                                            <td style="padding-left: 5rem">
+                                                                {{ $keyCategory . '.' . $key . '.' . $criteriaKey . '. ' }}
+                                                            </td>
+                                                            <td>
+                                                                <p>{{ $criteria->name }}</p>
+                                                                <div class="form-check form-check-inline">
+                                                                    <input class="form-check-input" type="radio"
+                                                                        id="inlineradio1_{{ $criteria->id }}"
+                                                                        name="responses[{{ $criteria->id }}][response]"
+                                                                        value="ya"
+                                                                        {{ old('responses.' . $criteria->id . '.response') == 'ya' ? 'checked' : '' }}>
+                                                                    <label class="form-check-label"
+                                                                        for="inlineradio1_{{ $criteria->id }}">Ya</label>
+                                                                </div>
+                                                                <div class="form-check form-check-inline">
+                                                                    <input class="form-check-input" type="radio"
+                                                                        id="inlineradio2_{{ $criteria->id }}"
+                                                                        name="responses[{{ $criteria->id }}][response]"
+                                                                        value="tidak"
+                                                                        {{ old('responses.' . $criteria->id . '.response') == 'tidak' ? 'checked' : '' }}>
+                                                                    <label class="form-check-label"
+                                                                        for="inlineradio2_{{ $criteria->id }}">Tidak</label>
+                                                                </div>
+                                                                <div class="form-check form-check-inline">
+                                                                    <input class="form-check-input" type="radio"
+                                                                        id="inlineradio3_{{ $criteria->id }}"
+                                                                        name="responses[{{ $criteria->id }}][response]"
+                                                                        value="na"
+                                                                        {{ old('responses.' . $criteria->id . '.response') == 'na' ? 'checked' : '' }}>
+                                                                    <label class="form-check-label"
+                                                                        for="inlineradio3_{{ $criteria->id }}">N/a</label>
+                                                                </div>
+                                                                @if ($errors->has('responses.' . $criteria->id . '.response'))
+                                                                    <div class="text-danger">
+                                                                        {{ $errors->first('responses.' . $criteria->id . '.response') }}
+                                                                    </div>
+                                                                @endif
+
+                                                                <div class="form-check p-0">
+                                                                    <textarea class="form-control w-50" placeholder="keterangan" name="responses[{{ $criteria->id }}][description]"
+                                                                        id="" rows="1">{{ old('responses.' . $criteria->id . '.description') }}</textarea>
+                                                                </div>
+                                                                @if ($errors->has('responses.' . $criteria->id . '.description'))
+                                                                    <div class="text-danger">
+                                                                        {{ $errors->first('responses.' . $criteria->id . '.description') }}
+                                                                    </div>
+                                                                @endif
+
+                                                                <div class="upload-btn-wrapper"
+                                                                    style="position: relative; overflow: hidden;">
+                                                                    <button id="uploadButton_{{ $criteria->id }}"
+                                                                        class="btn btn-outline-success mt-2 hover">+ Tambah
+                                                                        Lampiran</button>
+                                                                    <input type="file"
+                                                                        id="fileInput_{{ $criteria->id }}"
+                                                                        name="responses[{{ $criteria->id }}][attachment]"
+                                                                        style="font-size: 100px; position: absolute; left: 0; top: 0; opacity: 0;">
+                                                                </div>
+                                                                <p id="fileName_{{ $criteria->id }}"
+                                                                    class="form-text text-muted"></p>
+                                                                @if ($errors->has('responses.' . $criteria->id . '.attachment'))
+                                                                    <div class="text-danger">
+                                                                        {{ $errors->first('responses.' . $criteria->id . '.attachment') }}
+                                                                    </div>
+                                                                @endif
+                                                            </td>
+                                                        </tr>
+                                                    @endforeach
+                                                @endif
+                                            @endforeach
+                                        @endif
+                                    @endforeach
+                                </tbody>
+                                <tfoot>
+                                    <tr>
+                                        <td></td>
+                                        <td style="text-align: right;"><button type="submit" class="btn btn-primary"
+                                                aria-colspan="">Simpan</button></td>
+                                    </tr>
+                                </tfoot>
+                            </form>
+
+                        </table>
+                    </div>
+                @else
+                    <h5 class="text-center">Prakualifikasi Belum dibuka!</h5>
+                @endif
             @endif
+
         </div>
     @else
         <div class="card card-docs flex-row-fluid mt-5 p-3 border-success" style="border-radius: 1.35rem">
@@ -132,6 +182,35 @@
     @endif
 @endsection
 @push('scripts')
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            @foreach ($category as $cat)
+                @if (isset($cat->subCategory) && count($cat->subCategory) > 0)
+                    @foreach ($cat->subCategory as $subCategory)
+                        @foreach ($subCategory->criterias as $criteria)
+                            document.getElementsByName('responses[{{ $criteria->id }}][attachment]')[0]
+                                .addEventListener('change', function(event) {
+                                    const fileInput = event.target;
+                                    const uploadButton = document.getElementById(
+                                        'uploadButton_{{ $criteria->id }}');
+                                    const fileNameDisplay = document.getElementById(
+                                        'fileName_{{ $criteria->id }}');
+
+                                    if (fileInput.files.length > 0) {
+                                        const fileName = fileInput.files[0].name;
+                                        uploadButton.textContent = 'Ubah Lampiran';
+                                        fileNameDisplay.textContent = fileName;
+                                    } else {
+                                        uploadButton.textContent = '+ Tambah Lampiran';
+                                        fileNameDisplay.textContent = '';
+                                    }
+                                });
+                        @endforeach
+                    @endforeach
+                @endif
+            @endforeach
+        });
+    </script>
     <script>
         $(document).ready(function() {
             $('#verifikasi-table').DataTable({

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Category;
 use App\Http\Requests\StoreCategoryRequest;
 use App\Http\Requests\UpdateCategoryRequest;
+use App\Models\SubCategory;
 use Illuminate\Http\Request;
 
 class CategoryController extends Controller
@@ -14,12 +15,14 @@ class CategoryController extends Controller
      */
     public function index()
     {
-        $category = Category::with('criteria')->get();
+        $category = Category::with('subCategory', 'subCategory.criterias')->get();
         $categorySelect = Category::all();
+        $subCategorySelect = SubCategory::all();
 
         return view('prakualifikasi.soal', [
             'category' => $category,
-            'categorySelect' => $categorySelect
+            'categorySelect' => $categorySelect,
+            'subCategorySelect' => $subCategorySelect
         ]);
     }
 

@@ -2,12 +2,12 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Criteria;
-use App\Http\Requests\StoreCriteriaRequest;
-use App\Http\Requests\UpdateCriteriaRequest;
+use App\Models\SubCategory;
+use App\Http\Requests\StoreSubCategoryRequest;
+use App\Http\Requests\UpdateSubCategoryRequest;
 use Illuminate\Http\Request;
 
-class CriteriaController extends Controller
+class SubCategoryController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -32,10 +32,10 @@ class CriteriaController extends Controller
     {
         $validatedData = $request->validate([
             'name' => 'required',
-            'sub_category_id' => 'required'
+            'category_id' => 'required'
         ]);
 
-        Criteria::create($validatedData);
+        SubCategory::create($validatedData);
 
         return redirect()->route('soal-prakualifikasi');
     }
@@ -43,7 +43,7 @@ class CriteriaController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Criteria $criteria)
+    public function show(SubCategory $subCategory)
     {
         //
     }
@@ -51,7 +51,7 @@ class CriteriaController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Criteria $criteria)
+    public function edit(SubCategory $subCategory)
     {
         //
     }
@@ -59,7 +59,7 @@ class CriteriaController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(UpdateCriteriaRequest $request, Criteria $criteria)
+    public function update(UpdateSubCategoryRequest $request, SubCategory $subCategory)
     {
         //
     }
@@ -69,7 +69,7 @@ class CriteriaController extends Controller
      */
     public function destroy($id)
     {
-        Criteria::destroy($id);
+        SubCategory::destroy($id);
         return redirect()->route('soal-prakualifikasi');
     }
 }

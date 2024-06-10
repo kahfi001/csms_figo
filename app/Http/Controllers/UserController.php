@@ -51,4 +51,15 @@ class UserController extends Controller
         User::destroy($id);
         return redirect()->route('users');
     }
+
+    public function update(Request $request, $id)
+    {
+        $validatedData = $request->validate([
+            'name' => 'required',
+        ]);
+
+        User::where('id', $id)->update($validatedData);
+
+        return redirect()->route('users');
+    }
 }

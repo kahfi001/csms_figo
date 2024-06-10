@@ -9,9 +9,10 @@
             </div>
         </div>
         <div id="kt_account_settings_profile_details" class="collapse show">
-            <form id="kt_account_profile_details_form" method="POST" enctype="multipart/form-data" action=""
-                class="form">
+            <form id="kt_account_profile_details_form" method="POST" enctype="multipart/form-data"
+                action="{{ route('update-user', auth()->user()->id) }}" class="form">
                 @csrf
+                @method('PUT')
                 <div class="card-body border-top p-9">
                     <div class="row mb-6">
                         <label class="col-lg-4 col-form-label required fw-semibold fs-6">Nama Lengkap</label>

@@ -7,6 +7,7 @@ use App\Http\Controllers\PrequalificationController;
 use App\Http\Controllers\PrequalificationMinutesController;
 use App\Http\Controllers\PrintController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\SubCategoryController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\VendorDetailController;
 use App\Models\Certificate;
@@ -42,8 +43,10 @@ Route::post('/prakualifikasi', [PrequalificationController::class, 'store'])->mi
 Route::post('/storeScore', [PrequalificationController::class, 'storeScore'])->middleware(['auth', 'verified'])->name('store-score');
 Route::get('/kategori-prakualifikasi', [CategoryController::class, 'index'])->name('soal-prakualifikasi');
 Route::post('/kategori', [CategoryController::class, 'store'])->name('store-kategori');
+Route::post('/subkategori', [SubCategoryController::class, 'store'])->name('store-subkategori');
 Route::post('/kriteria', [CriteriaController::class, 'store'])->name('store-kriteria');
 Route::delete('/kategori/{id}', [CategoryController::class, 'destroy'])->name('delete-kategori');
+Route::delete('/subkategori/{id}', [SubCategoryController::class, 'destroy'])->name('delete-subkategori');
 Route::delete('/kriteria/{id}', [CriteriaController::class, 'destroy'])->name('delete-kriteria');
 
 Route::get('/sertifikat', [CertificateController::class, 'index'])->middleware(['auth', 'verified'])->name('sertifikat');
@@ -71,6 +74,7 @@ Route::get('/user', [UserController::class, 'index'])->name('users');
 Route::post('/user', [UserController::class, 'store'])->name('store-user');
 Route::get('/user/create', [UserController::class, 'add'])->name('add-user');
 Route::delete('/user/{id}', [UserController::class, 'destroy'])->name('delete-user');
+Route::put('/user/{id}', [UserController::class, 'update'])->name('update-user');
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');

@@ -19,7 +19,7 @@ return new class extends Migration
                 ->onDelete('cascade')
                 ->onUpdate('cascade');
             $table->string('hse_name');
-            $table->string('hse_manager');
+            $table->string('manager_name');
             $table->foreignId('prequalification_id')->nullable()->constrained('prequalifications')->onDelete('set null')->onUpdate('cascade');
             $table->integer('score');
             $table->boolean('is_upload_vendor')->default(false);

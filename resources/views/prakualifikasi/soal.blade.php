@@ -21,6 +21,10 @@
                     + Kategori
                 </button>
                 <button type="button" class="btn btn-success mx-2" href="#" data-toggle="modal"
+                    data-target="#subKategoriModal">
+                    + Sub Kategori
+                </button>
+                <button type="button" class="btn btn-success" href="#" data-toggle="modal"
                     data-target="#kriteriaModal">
                     + Kriteria
                 </button>
@@ -53,15 +57,15 @@
                                 </form>
                             </td>
                         </tr>
-                        @foreach ($category->criteria as $key => $criteria)
+                        @foreach ($category->subCategory as $key => $subCategory)
                             @php
                                 $key++;
                             @endphp
                             <tr>
-                                <td></td>
-                                <td>{{ $categoryKey . '.' . $key . '. ' . $criteria->name }}</td>
+                                <td colspan="2" style="padding-left: 3rem">
+                                    {{ $categoryKey . '.' . $key . '. ' . $subCategory->name }}</td>
                                 <td class="text-right">
-                                    <form action="{{ route('delete-kriteria', $criteria->id) }}" method="post">
+                                    <form action="{{ route('delete-subkategori', $subCategory->id) }}" method="post">
                                         @csrf
                                         @method('delete')
                                         <button class="btn btn-danger" data-toggle="tooltip" data-original-title="Hapus"
@@ -71,6 +75,26 @@
                                     </form>
                                 </td>
                             </tr>
+                            @foreach ($subCategory->criterias as $criteriaKey => $criteria)
+                                @php
+                                    $criteriaKey++;
+                                @endphp
+                                <tr>
+                                    <td colspan="2" style="padding-left: 5rem">
+                                        {{ $categoryKey . '.' . $key . '.' . $criteriaKey . '. ' . $subCategory->name }}
+                                    </td>
+                                    <td class="text-right">
+                                        <form action="{{ route('delete-kriteria', $criteria->id) }}" method="post">
+                                            @csrf
+                                            @method('delete')
+                                            <button class="btn btn-danger" data-toggle="tooltip" data-original-title="Hapus"
+                                                onclick="return confirm('Apakah anda yakin?')">
+                                                <i class="bi bi-trash3"></i>
+                                            </button>
+                                        </form>
+                                    </td>
+                                </tr>
+                            @endforeach
                         @endforeach
                     @endforeach
                 </tbody>
@@ -101,6 +125,51 @@
             </div>
         </div>
     </div>
+    <div class="modal fade" id="subKategoriModal" tabindex="-1" role="dialog"
+        aria-labelledby="exampleModalLabel"aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Sub Kategori</h5>
+                    <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">×</span>
+                    </button>
+                </div>
+                <form action="{{ route('store-subkategori') }}" method="post">
+                    @csrf
+                    <div class="modal-body">
+                        <div class="row mb-2">
+                            <div class="col-xl-3">
+                                <label for="kriteria" class="form-label">Kategori</label>
+                            </div>
+                            <div class="col-lg">
+                                <select name="category_id" id="kriteria" class="form-control" data-control="select"
+                                    data-placeholder="Pilih Kategori">
+                                    <option value="">Pilih Kategori</option>
+                                    @foreach ($categorySelect as $item)
+                                        <option value="{{ $item->id }}">{{ $item->name }}</option>
+                                    @endforeach
+                                </select>
+                            </div>
+                        </div>
+                        <div class="row mb-2">
+                            <div class="col-xl-3">
+                                <label for="kriteria" class="form-label">Sub Kategori</label>
+                            </div>
+                            <div class="col-lg">
+                                <input type="text" name="name" id="kriteria" class="form-control">
+                                </input>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button class="btn btn-secondary" type="button" data-dismiss="modal">Batal</button>
+                        <button type="submit" class="btn btn-primary" href="#">Simpan</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
     <div class="modal fade" id="kriteriaModal" tabindex="-1" role="dialog"
         aria-labelledby="exampleModalLabel"aria-hidden="true">
         <div class="modal-dialog" role="document">
@@ -116,13 +185,13 @@
                     <div class="modal-body">
                         <div class="row mb-2">
                             <div class="col-xl-3">
-                                <label for="kriteria" class="form-label">Kategori</label>
+                                <label for="kriteria" class="form-label">Sub Kategori</label>
                             </div>
                             <div class="col-lg">
-                                <select name="category_id" id="kriteria" class="form-control" data-control="select"
+                                <select name="sub_category_id" id="kriteria" class="form-control" data-control="select"
                                     data-placeholder="Pilih Kategori">
-                                    <option value="">Pilih Kategori</option>
-                                    @foreach ($categorySelect as $item)
+                                    <option value="">Pilih Sub Kategori</option>
+                                    @foreach ($subCategorySelect as $item)
                                         <option value="{{ $item->id }}">{{ $item->name }}</option>
                                     @endforeach
                                 </select>

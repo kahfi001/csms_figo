@@ -46,86 +46,96 @@
                                 <td class="text-start" style="width:10%;">{{ $keyCategory }}</td>
                                 <td class="text-start">{{ $category->name }}</td>
                             </tr>
-                            @foreach ($category->criteria as $key => $criteria)
+                            @foreach ($category->subCategory as $keySubCategory => $subCategory)
                                 @php
-                                    $key++;
-                                    $userResponse = $response->firstWhere('criteria_id', $criteria->id);
+                                    $keySubCategory++;
                                 @endphp
                                 <tr>
-                                    <td>{{ $keyCategory . '.' . $key }}</td>
-                                    <td>
-                                        <p>{{ $criteria->name }}</p>
-                                        <div class="row">
-                                            <div class="col-md-6">
-                                                <div class="form-check form-check-inline">
-                                                    <input class="form-check-input" type="radio"
-                                                        id="inlineradio1_{{ $criteria->id }}"
-                                                        name="responses[{{ $criteria->id }}][response]" value="ya"
-                                                        {{ $userResponse && $userResponse->response == 'ya' ? 'checked' : '' }}
-                                                        disabled>
-                                                    <label class="form-check-label"
-                                                        for="inlineradio1_{{ $criteria->id }}">Ya</label>
-                                                </div>
-                                                <div class="form-check form-check-inline">
-                                                    <input class="form-check-input" type="radio"
-                                                        id="inlineradio2_{{ $criteria->id }}"
-                                                        name="responses[{{ $criteria->id }}][response]" value="tidak"
-                                                        {{ $userResponse && $userResponse->response == 'tidak' ? 'checked' : '' }}
-                                                        disabled>
-                                                    <label class="form-check-label"
-                                                        for="inlineradio2_{{ $criteria->id }}">Tidak</label>
-                                                </div>
-                                                <div class="form-check form-check-inline">
-                                                    <input class="form-check-input" type="radio"
-                                                        id="inlineradio3_{{ $criteria->id }}"
-                                                        name="responses[{{ $criteria->id }}][response]" value="na"
-                                                        {{ $userResponse && $userResponse->response == 'na' ? 'checked' : '' }}
-                                                        disabled>
-                                                    <label class="form-check-label"
-                                                        for="inlineradio3_{{ $criteria->id }}">N/a</label>
-                                                </div>
-                                                <div class="form-check p-0 mb-3">
-                                                    <textarea class="form-control w-50" name="responses[{{ $criteria->id }}][description]" id="" rows="1"
-                                                        disabled>{{ $userResponse->description }}</textarea>
-                                                </div>
-                                                <div class="upload-btn-wrapper"
-                                                    style="position: relative; overflow: hidden;">
-                                                    @if ($userResponse->attachment_path != '')
-                                                        <a target="_blank"
-                                                            href="{{ URL::asset('/storage/' . $userResponse->attachment_path) }}"
-                                                            class="btn btn-primary">
-                                                            Lihat Dokumen
-                                                        </a>
-                                                    @endif
-                                                </div>
-                                            </div>
-                                            @if ($userResponse->response != 'na')
+                                    <td style="padding-left: 3rem">{{ $keyCategory . '.' . $keySubCategory . '.' }}</td>
+                                    <td>{{ $subCategory->name }}</td>
+                                </tr>
+                                @foreach ($subCategory->criterias as $key => $criteria)
+                                    @php
+                                        $key++;
+                                        $userResponse = $response->firstWhere('criteria_id', $criteria->id);
+                                    @endphp
+                                    <tr>
+                                        <td style="padding-left: 5rem">
+                                            {{ $keyCategory . '.' . $keySubCategory . '.' . $key }}</td>
+                                        <td>
+                                            <p>{{ $criteria->name }}</p>
+                                            <div class="row">
                                                 <div class="col-md-6">
-                                                    <div class="mb-3">
-                                                        @php
-                                                            $skor = 0;
-                                                            if ($userResponse->response == 'ya') {
-                                                                if ($userResponse->attachment_path != '') {
-                                                                    $skor = 3;
-                                                                } else {
-                                                                    $skor = 1;
-                                                                }
-                                                            } elseif ($userResponse->respons == 'tidak') {
-                                                                $skor = 0;
-                                                            }
-
-                                                        @endphp
-                                                        <label for="score" class="form-label">Skor</label>
-                                                        <input type="number" class="form-control" name="scores[]"
-                                                            id="scores" value="{{ $skor }}"
-                                                            aria-describedby="helpId" placeholder="score" />
+                                                    <div class="form-check form-check-inline">
+                                                        <input class="form-check-input" type="radio"
+                                                            id="inlineradio1_{{ $criteria->id }}"
+                                                            name="responses[{{ $criteria->id }}][response]" value="ya"
+                                                            {{ $userResponse && $userResponse->response == 'ya' ? 'checked' : '' }}
+                                                            disabled>
+                                                        <label class="form-check-label"
+                                                            for="inlineradio1_{{ $criteria->id }}">Ya</label>
+                                                    </div>
+                                                    <div class="form-check form-check-inline">
+                                                        <input class="form-check-input" type="radio"
+                                                            id="inlineradio2_{{ $criteria->id }}"
+                                                            name="responses[{{ $criteria->id }}][response]" value="tidak"
+                                                            {{ $userResponse && $userResponse->response == 'tidak' ? 'checked' : '' }}
+                                                            disabled>
+                                                        <label class="form-check-label"
+                                                            for="inlineradio2_{{ $criteria->id }}">Tidak</label>
+                                                    </div>
+                                                    <div class="form-check form-check-inline">
+                                                        <input class="form-check-input" type="radio"
+                                                            id="inlineradio3_{{ $criteria->id }}"
+                                                            name="responses[{{ $criteria->id }}][response]" value="na"
+                                                            {{ $userResponse && $userResponse->response == 'na' ? 'checked' : '' }}
+                                                            disabled>
+                                                        <label class="form-check-label"
+                                                            for="inlineradio3_{{ $criteria->id }}">N/a</label>
+                                                    </div>
+                                                    <div class="form-check p-0 mb-3">
+                                                        <textarea class="form-control w-50" name="responses[{{ $criteria->id }}][description]" id="" rows="1"
+                                                            disabled>{{ $userResponse->description }}</textarea>
+                                                    </div>
+                                                    <div class="upload-btn-wrapper"
+                                                        style="position: relative; overflow: hidden;">
+                                                        @if ($userResponse->attachment_path != '')
+                                                            <a target="_blank"
+                                                                href="{{ URL::asset('/storage/' . $userResponse->attachment_path) }}"
+                                                                class="btn btn-primary">
+                                                                Lihat Dokumen
+                                                            </a>
+                                                        @endif
                                                     </div>
                                                 </div>
-                                            @endif
-                                        </div>
-                                    </td>
+                                                @if ($userResponse->response != 'na')
+                                                    <div class="col-md-6">
+                                                        <div class="mb-3">
+                                                            @php
+                                                                $skor = 0;
+                                                                if ($userResponse->response == 'ya') {
+                                                                    if ($userResponse->attachment_path != '') {
+                                                                        $skor = 3;
+                                                                    } else {
+                                                                        $skor = 1;
+                                                                    }
+                                                                } elseif ($userResponse->respons == 'tidak') {
+                                                                    $skor = 0;
+                                                                }
 
-                                </tr>
+                                                            @endphp
+                                                            <label for="score" class="form-label">Skor</label>
+                                                            <input type="number" class="form-control" name="scores[]"
+                                                                id="scores" value="{{ $skor }}"
+                                                                aria-describedby="helpId" placeholder="score" />
+                                                        </div>
+                                                    </div>
+                                                @endif
+                                            </div>
+                                        </td>
+
+                                    </tr>
+                                @endforeach
                             @endforeach
                         @endforeach
                     </tbody>

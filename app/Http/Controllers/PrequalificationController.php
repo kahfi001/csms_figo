@@ -20,7 +20,7 @@ class PrequalificationController extends Controller
      */
     public function index(Request $request)
     {
-        $category = Category::with('criteria')->get();
+        $category = Category::with('subCategory', 'subCategory.criterias')->get();
         if ($request->ajax()) {
             $prequalification = Prequalification::with(['user.vendordetail'])->select('prequalifications.*');
 
@@ -35,9 +35,11 @@ class PrequalificationController extends Controller
                 ->make(true);
         }
 
+        $lastPrakualifikasi = Prequalification::where('user_id', auth()->user()->id)->orderBy('id', 'DESC')->first();
 
         return view('prakualifikasi.index', [
-            'category' => $category
+            'category' => $category,
+            'lastPrakualifikasi' => $lastPrakualifikasi
         ]);
     }
 
@@ -54,6 +56,7 @@ class PrequalificationController extends Controller
      */
     public function store(Request $request)
     {
+        // Validate the incoming request data
         $validatedData = $request->validate([
             'responses' => 'required|array',
             'responses.*.response' => 'required|in:ya,tidak,na',
@@ -61,32 +64,38 @@ class PrequalificationController extends Controller
             'responses.*.attachment' => 'nullable|file|mimes:jpeg,png,pdf,doc,docx|max:2048'
         ]);
 
+        // Generate a unique prequalification number
         $prequalification_number = 'PRE-' . str_pad(mt_rand(0, 99999), 5, '0', STR_PAD_LEFT);
+
+        // Create a new prequalification entry
         $prequalification = Prequalification::create([
             'user_id' => auth()->user()->id,
             'prequalification_number' => $prequalification_number
         ]);
 
+        // Iterate through each response and save to the database
         foreach ($validatedData['responses'] as $criteria_id => $response) {
             $attachmentPath = null;
 
+            // Check if an attachment is present and handle file upload
             if (isset($response['attachment'])) {
-                // Handle file upload
                 $attachmentPath = $response['attachment']->store('attachments');
             }
 
-            // Save the response to the database
+            // Create a new user response entry
             UserResponse::create([
                 'prequalification_id' => $prequalification->id,
                 'criteria_id' => $criteria_id,
                 'response' => $response['response'],
-                'description' => $response['description'],
+                'description' => $response['description'] ?? null, // Handle null description
                 'attachment_path' => $attachmentPath,
             ]);
         }
 
+        // Redirect back to the dashboard with a success message
         return redirect()->route('dashboard')->with('success', 'Responses saved successfully.');
     }
+
 
 
     /**
@@ -94,7 +103,7 @@ class PrequalificationController extends Controller
      */
     public function show($id)
     {
-        $category = Category::with('criteria')->get();
+        $category = Category::with('subCategory', 'subCategory.criterias')->get();
         $response = UserResponse::with(['prequalification', 'criteria'])->where('prequalification_id', $id)->get();
 
         // dd($response);
