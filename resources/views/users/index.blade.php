@@ -16,15 +16,17 @@
             <a href="{{ route('add-user') }}" class="btn btn-secondary mb-3">
                 Tambahkan User
             </a>
-            <table id="users-table" class="table align-middle table-row-dashed  w-100 ">
-                <thead>
-                    <th>No</th>
-                    <th>Name</th>
-                    <th>Email</th>
-                    <th>Role</th>
-                    <th>Actions</th>
-                </thead>
-            </table>
+            <div class="table-responsive">
+                <table id="users-table" class="table align-middle table-row-dashed  w-100 ">
+                    <thead>
+                        <th>No</th>
+                        <th>Name</th>
+                        <th>Email</th>
+                        <th>Role</th>
+                        <th>Actions</th>
+                    </thead>
+                </table>
+            </div>
         </div>
     </div>
 @endsection

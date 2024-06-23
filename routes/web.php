@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\CertificateController;
+use App\Http\Controllers\ChangePasswordController;
 use App\Http\Controllers\CriteriaController;
 use App\Http\Controllers\PrequalificationController;
 use App\Http\Controllers\PrequalificationMinutesController;
@@ -79,5 +80,10 @@ Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+});
+
+Route::middleware('auth')->group(function () {
+    Route::get('/change-password', [ChangePasswordController::class, 'showChangePasswordForm'])->name('password.change');
+    Route::put('/ganti-password', [ChangePasswordController::class, 'changePassword'])->name('ganti-password');
 });
 require __DIR__ . '/auth.php';

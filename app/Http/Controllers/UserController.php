@@ -60,6 +60,6 @@ class UserController extends Controller
 
         User::where('id', $id)->update($validatedData);
 
-        return redirect()->route('users');
+        return redirect()->route('dashboard');
     }
 }

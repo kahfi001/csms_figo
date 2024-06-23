@@ -31,60 +31,42 @@
             </div>
         </div>
         <div class="card-body pt-0">
-            <table id="prakualifikasi-table" class="table align-middle table-row-dashed fs-6 gy-5">
-                <thead>
-                    <tr class="fw-semibold fs-6 text-muted">
-                        <th class="text-start">No</th>
-                        <th class="text-center">Prakualifikasi</th>
-                        <th class="text-center">Actions</th>
-                    </tr>
-                </thead>
-                <tbody class="fw-semibold text-gray-600">
-                    @foreach ($category as $categoryKey => $category)
-                        @php
-                            $categoryKey++;
-                        @endphp
-                        <tr class="fw-semibold fs-6 text-white bg-success">
-                            <td colspan="2">{{ $categoryKey . '. ' . $category->name }}</td>
-                            <td class="text-right">
-                                <form action="{{ route('delete-kategori', $category->id) }}" method="post">
-                                    @csrf
-                                    @method('delete')
-                                    <button class="btn btn-danger" data-toggle="tooltip" data-original-title="Hapus"
-                                        onclick="return confirm('Apakah anda yakin?')">
-                                        <i class="bi bi-trash3"></i> Kategori
-                                    </button>
-                                </form>
-                            </td>
+            <div class="table-responsive">
+                <table id="prakualifikasi-table" class="table align-middle table-row-dashed fs-6 gy-5">
+                    <thead>
+                        <tr class="fw-semibold fs-6 text-muted">
+                            <th class="text-start">No</th>
+                            <th class="text-center">Prakualifikasi</th>
+                            <th class="text-center">Actions</th>
                         </tr>
-                        @foreach ($category->subCategory as $key => $subCategory)
+                    </thead>
+                    <tbody class="fw-semibold text-gray-600">
+                        @foreach ($category as $categoryKey => $category)
                             @php
-                                $key++;
+                                $categoryKey++;
                             @endphp
-                            <tr>
-                                <td colspan="2" style="padding-left: 3rem">
-                                    {{ $categoryKey . '.' . $key . '. ' . $subCategory->name }}</td>
+                            <tr class="fw-semibold fs-6 text-white bg-success">
+                                <td colspan="2">{{ $categoryKey . '. ' . $category->name }}</td>
                                 <td class="text-right">
-                                    <form action="{{ route('delete-subkategori', $subCategory->id) }}" method="post">
+                                    <form action="{{ route('delete-kategori', $category->id) }}" method="post">
                                         @csrf
                                         @method('delete')
                                         <button class="btn btn-danger" data-toggle="tooltip" data-original-title="Hapus"
                                             onclick="return confirm('Apakah anda yakin?')">
-                                            <i class="bi bi-trash3"></i>
+                                            <i class="bi bi-trash3"></i> Kategori
                                         </button>
                                     </form>
                                 </td>
                             </tr>
-                            @foreach ($subCategory->criterias as $criteriaKey => $criteria)
+                            @foreach ($category->subCategory as $key => $subCategory)
                                 @php
-                                    $criteriaKey++;
+                                    $key++;
                                 @endphp
                                 <tr>
-                                    <td colspan="2" style="padding-left: 5rem">
-                                        {{ $categoryKey . '.' . $key . '.' . $criteriaKey . '. ' . $subCategory->name }}
-                                    </td>
+                                    <td colspan="2" style="padding-left: 3rem">
+                                        {{ $categoryKey . '.' . $key . '. ' . $subCategory->name }}</td>
                                     <td class="text-right">
-                                        <form action="{{ route('delete-kriteria', $criteria->id) }}" method="post">
+                                        <form action="{{ route('delete-subkategori', $subCategory->id) }}" method="post">
                                             @csrf
                                             @method('delete')
                                             <button class="btn btn-danger" data-toggle="tooltip" data-original-title="Hapus"
@@ -94,11 +76,32 @@
                                         </form>
                                     </td>
                                 </tr>
+                                @foreach ($subCategory->criterias as $criteriaKey => $criteria)
+                                    @php
+                                        $criteriaKey++;
+                                    @endphp
+                                    <tr>
+                                        <td colspan="2" style="padding-left: 5rem">
+                                            {{ $categoryKey . '.' . $key . '.' . $criteriaKey . '. ' . $subCategory->name }}
+                                        </td>
+                                        <td class="text-right">
+                                            <form action="{{ route('delete-kriteria', $criteria->id) }}" method="post">
+                                                @csrf
+                                                @method('delete')
+                                                <button class="btn btn-danger" data-toggle="tooltip"
+                                                    data-original-title="Hapus"
+                                                    onclick="return confirm('Apakah anda yakin?')">
+                                                    <i class="bi bi-trash3"></i>
+                                                </button>
+                                            </form>
+                                        </td>
+                                    </tr>
+                                @endforeach
                             @endforeach
                         @endforeach
-                    @endforeach
-                </tbody>
-            </table>
+                    </tbody>
+                </table>
+            </div>
         </div>
     </div>
     <div class="modal fade" id="kategoriModal" tabindex="-1" role="dialog"

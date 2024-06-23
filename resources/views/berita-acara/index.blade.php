@@ -20,49 +20,51 @@
         </div>
         <div class="card-body pt-0">
 
-            <table id="verifikasi-table " class="table align-middle table-row-dashed fs-6 gy-5">
-                <thead>
-                    <th>No</th>
-                    <th>Nama Perusahaan</th>
-                    <th>Tanggal pendaftaran</th>
-                    <th>Status</th>
-                    <th>Actions</th>
-                </thead>
-                <tbody>
-                    @forelse ($berita as $key => $item)
-                        <tr>
-                            <td>{{ $loop->iteration }}</td>
-                            <td>{{ $item->user->vendorDetail->nama_perusahaan }}</td>
-                            <td>{{ \Carbon\Carbon::parse($item->created_at)->format('d/m/Y') }}</td>
-                            <td>
-                                @if ($item->is_upload_vendor == 0)
-                                    Menunggu tanda tangan direktur
-                                @elseif($item->is_upload_vendor == 1 && $item->is_upload_manager == 0)
-                                    Menunggu tanda tangan manager
-                                @elseif($item->is_upload_manager == 1)
-                                    Disetujui
-                                @endif
-                            </td>
-                            <td>
-                                <a href="{{ URL::asset('storage/' . $item->document_path) }}" class="btn btn-success"
-                                    download="Berita acara">Download</a>
-                                @if ($item->is_upload_vendor == false)
-                                    <a href="{{ url('berita/' . $item->id) }}" class="btn btn-primary">Upload</a>
-                                @endif
-                                @if (auth()->user()->role == 'manager')
-                                    @if ($item->is_upload_manager == false)
+            <div class="table-responsive">
+                <table id="verifikasi-table " class="table align-middle table-row-dashed fs-6 gy-5">
+                    <thead>
+                        <th>No</th>
+                        <th>Nama Perusahaan</th>
+                        <th>Tanggal pendaftaran</th>
+                        <th>Status</th>
+                        <th>Actions</th>
+                    </thead>
+                    <tbody>
+                        @forelse ($berita as $key => $item)
+                            <tr>
+                                <td>{{ $loop->iteration }}</td>
+                                <td>{{ $item->user->vendorDetail->nama_perusahaan }}</td>
+                                <td>{{ \Carbon\Carbon::parse($item->created_at)->format('d/m/Y') }}</td>
+                                <td>
+                                    @if ($item->is_upload_vendor == 0)
+                                        Menunggu tanda tangan direktur
+                                    @elseif($item->is_upload_vendor == 1 && $item->is_upload_manager == 0)
+                                        Menunggu tanda tangan manager
+                                    @elseif($item->is_upload_manager == 1)
+                                        Disetujui
+                                    @endif
+                                </td>
+                                <td>
+                                    <a href="{{ URL::asset('storage/' . $item->document_path) }}" class="btn btn-success"
+                                        download="Berita acara">Download</a>
+                                    @if ($item->is_upload_vendor == false)
                                         <a href="{{ url('berita/' . $item->id) }}" class="btn btn-primary">Upload</a>
                                     @endif
-                                @endif
-                            </td>
-                        </tr>
-                    @empty
-                        <tr>
-                            <td colspan="4"></td>
-                        </tr>
-                    @endforelse
-                </tbody>
-            </table>
+                                    @if (auth()->user()->role == 'manager')
+                                        @if ($item->is_upload_manager == false)
+                                            <a href="{{ url('berita/' . $item->id) }}" class="btn btn-primary">Upload</a>
+                                        @endif
+                                    @endif
+                                </td>
+                            </tr>
+                        @empty
+                            <tr>
+                                <td colspan="4"></td>
+                            </tr>
+                        @endforelse
+                    </tbody>
+                </table>
+            </div>
         </div>
     </div>
 @endsection

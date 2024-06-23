@@ -28,10 +28,13 @@
                                 class="form-control form-control-lg form-control-solid" placeholder="Email name" />
                         </div>
                     </div>
-                    <div class="card-footer d-flex justify-content-end py-6 px-9">
-                        <button type="reset" class="btn btn-light btn-active-light-primary me-2">Discard</button>
-                        <button type="submit" class="btn btn-primary" id="kt_account_profile_details_submit">Save
-                            Changes</button>
+                    <div class="card-footer d-flex justify-content-between  py-6 px-9">
+                        <a href="{{ route('password.change') }}" class="btn btn-warning">Change Password</a>
+                        <div>
+                            <button type="reset" class="btn btn-light btn-active-light-primary me-2">Discard</button>
+                            <button type="submit" class="btn btn-primary" id="kt_account_profile_details_submit">Save
+                                Changes</button>
+                        </div>
                     </div>
                 </div>
             </form>

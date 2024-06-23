@@ -30,61 +30,66 @@
             <li> dokumen dan lapangan&nbsp;</li>
         </ol>
         <p>Berdasarkan pertimbangan diatas, hasil penilaian prakualifikasi CSMS sebagai berikut:</p>
-        <table style="width: 100%;   border: 1px solid; border-collapse: collapse;">
-            <tr>
-                <td style="width: 33.3333%; text-align: center; border: 1px solid;">Nama Perusahaan</td>
-                <td style="width: 33.3333%; text-align: center; border: 1px solid;">Nilai</td>
-                <td style="width: 33.3333%; text-align: center; border: 1px solid;">Risiko</td>
-            </tr>
-            <tr>
-                <td
-                    style="width: 33.3333%; border: 1px solid; text-align: center; vertical-align: middle; font-size: 14pt; font-weight: bold; padding-bottom: 2rem">
-                    <br>{{ $vendorDetail->nama_perusahaan }}
-                </td>
-                <td
-                    style="width: 33.3333%; border: 1px solid; text-align: center; vertical-align: middle; font-size: 14pt; font-weight: bold; padding-bottom: 2rem">
-                    <br>{{ $beritaAcara->score }}
-                </td>
-                <td
-                    style="width: 33.3333%; border: 1px solid; text-align: center; vertical-align: middle; font-size: 14pt; font-weight: bold; padding-bottom: 2rem">
-                    <br>
-                    @if ($beritaAcara->score < 30)
-                        Rendah
-                    @elseif($beritaAcara->score >= 30 || $beritaAcara->score <= 50)
-                        Moderat
-                    @elseif($beritaAcara->score >= 51 || $beritaAcara->score <= 75)
-                        Tinggi
-                    @elseif($beritaAcara->score >= 76 || $beritaAcara->score <= 85)
-                        Sangat Tinggi
-                    @elseif($beritaAcara->score >= 86 || $beritaAcara->score <= 100)
-                        Ekstrem
-                    @endif
-                </td>
-            </tr>
-        </table>
+        <div class="table-responsive">
+            <table style="width: 100%;   border: 1px solid; border-collapse: collapse;">
+                <tr>
+                    <td style="width: 33.3333%; text-align: center; border: 1px solid;">Nama Perusahaan</td>
+                    <td style="width: 33.3333%; text-align: center; border: 1px solid;">Nilai</td>
+                    <td style="width: 33.3333%; text-align: center; border: 1px solid;">Risiko</td>
+                </tr>
+                <tr>
+                    <td
+                        style="width: 33.3333%; border: 1px solid; text-align: center; vertical-align: middle; font-size: 14pt; font-weight: bold; padding-bottom: 2rem">
+                        <br>{{ $vendorDetail->nama_perusahaan }}
+                    </td>
+                    <td
+                        style="width: 33.3333%; border: 1px solid; text-align: center; vertical-align: middle; font-size: 14pt; font-weight: bold; padding-bottom: 2rem">
+                        <br>{{ $beritaAcara->score }}
+                    </td>
+                    <td
+                        style="width: 33.3333%; border: 1px solid; text-align: center; vertical-align: middle; font-size: 14pt; font-weight: bold; padding-bottom: 2rem">
+                        <br>
+                        @if ($beritaAcara->score < 30)
+                            Rendah
+                        @elseif($beritaAcara->score >= 30 || $beritaAcara->score <= 50)
+                            Moderat
+                        @elseif($beritaAcara->score >= 51 || $beritaAcara->score <= 75)
+                            Tinggi
+                        @elseif($beritaAcara->score >= 76 || $beritaAcara->score <= 85)
+                            Sangat Tinggi
+                        @elseif($beritaAcara->score >= 86 || $beritaAcara->score <= 100)
+                            Ekstrem
+                        @endif
+                    </td>
+                </tr>
+            </table>
+        </div>
         <p>Demikian berita acara prakualifikasi ini dan dapat digunakan sebagaimana mestinya</p>
         <br><br><br>
-        <table style="width: 100%;">
-            <tbody>
-                <tr>
-                    <td style="width: 50%;">Diterbitkan &nbsp;: Tuban<br>Tanggal&nbsp; &nbsp; &nbsp; &nbsp;
-                        : {{ $tglttd }}</td>
-                    <td style="width: 50%;"><br></td>
-                </tr>
-                <tr>
-                    <td style="width: 50%; text-align: center;"> Manager Internal<br>Perusahaan Tambang</td>
-                    <td style="width: 50%; text-align: center;">Pemohon<br>{{ $vendorDetail->nama_perusahaan }}</td>
-                </tr>
-                <tr>
-                    <td style="width: 50%; text-align: center;">
-                        <br><br><br><br><br>{{ $beritaAcara->manager_name }}<br>Manager
-                    </td>
-                    <td style="width: 50%; text-align: center;">
-                        <br><br><br><br><br>{{ $vendorDetail->direktur }}<br>Direktur
-                    </td>
-                </tr>
-            </tbody>
-        </table>
+        <div class="table-responsive">
+            <table style="width: 100%;">
+                <tbody>
+                    <tr>
+                        <td style="width: 50%;">Diterbitkan &nbsp;: Tuban<br>Tanggal&nbsp; &nbsp; &nbsp; &nbsp;
+                            : {{ $tglttd }}</td>
+                        <td style="width: 50%;"><br></td>
+                    </tr>
+                    <tr>
+                        <td style="width: 50%; text-align: center;"> Manager Internal<br>Perusahaan Tambang</td>
+                        <td style="width: 50%; text-align: center;">Pemohon<br>{{ $vendorDetail->nama_perusahaan }}
+                        </td>
+                    </tr>
+                    <tr>
+                        <td style="width: 50%; text-align: center;">
+                            <br><br><br><br><br>{{ $beritaAcara->manager_name }}<br>Manager
+                        </td>
+                        <td style="width: 50%; text-align: center;">
+                            <br><br><br><br><br>{{ $vendorDetail->direktur }}<br>Direktur
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
     </main>
 </body>
 

@@ -42,7 +42,17 @@ class VendorDetailController extends Controller
             'phone' => 'required',
             'no_tdp' => 'required',
             'no_siup' => 'required',
-            'direktur' => 'required'
+            'direktur' => 'required',
+            'direktur_phone' => 'nullable',
+            'direktur_email' => 'nullable',
+            'kode_pos' => 'nullable',
+            'provinsi' => 'nullable',
+            'kota' => 'nullable',
+            'titik_koordinat' => 'nullable',
+            'no_pkp' => 'nullable',
+            'website' => 'nullable',
+            'alamat' => 'nullable',
+            'no_akta' => 'nullable',
         ]);
 
         $validatedData['user_id'] = auth()->user()->id;
