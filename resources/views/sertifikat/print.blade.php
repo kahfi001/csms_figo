@@ -19,7 +19,7 @@
         }
 
         .cover {
-            background-image: url('{{ URL::asset('sb-admin/img/sertifikatbg.jpg') }}');
+            background-image: url('https://csms.my.id/public/sb-admin/img/sertifikatbg.jpg');
             background-size: cover;
             background-position: center;
             background-repeat: no-repeat;
@@ -65,12 +65,12 @@
             <br>Menyatakan perusahaan tersebut diatas lulus <br> Prakualifikasi Contractor Safety Management System
             (CSMS) dengan Kriteria :
         </p>
-        <h1>{{ $tingkat }} ({{ $score }}%)</h1>
+        <h1>({{ $score }}%)</h1>
         <p>Berlaku selama 3 Tahun sejak diterbitkan</p>
         <p>Surabaya, {{ $tglCetak }}</p><br>
         <img src="{{ $qrcode_path }}" style="width: 7rem; margin: 5px;" alt="QR Code">
         <div class="left-align logo">
-            <img src="{{ URL::asset('sb-admin/img/logo.png') }}" alt="Logo Perusahaan">
+            <img src="https://csms.my.id/public/sb-admin/img/logo.png" alt="Logo Perusahaan">
         </div>
     </div>
 </body>

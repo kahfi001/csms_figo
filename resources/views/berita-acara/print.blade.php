@@ -14,7 +14,7 @@
 
 <body>
     <main>
-        <img src="{{ URL::asset('sb-admin/img/logo.png') }}" style="margin-bottom: 2rem;">
+        <img src="https://csms.my.id/public/sb-admin/img/logo.png" style="margin-bottom: 2rem;">
         <p style="text-align: center;"><strong>BERITA ACARA PRAKUALIFIKASI CSMS</strong></p>
         <p style="text-align: justify;">{{ $tanggal }}, kami yang di bawah ini :</p>
         <ol style="list-style-type: upper-roman;">
@@ -35,7 +35,6 @@
                 <tr>
                     <td style="width: 33.3333%; text-align: center; border: 1px solid;">Nama Perusahaan</td>
                     <td style="width: 33.3333%; text-align: center; border: 1px solid;">Nilai</td>
-                    <td style="width: 33.3333%; text-align: center; border: 1px solid;">Risiko</td>
                 </tr>
                 <tr>
                     <td
@@ -45,21 +44,6 @@
                     <td
                         style="width: 33.3333%; border: 1px solid; text-align: center; vertical-align: middle; font-size: 14pt; font-weight: bold; padding-bottom: 2rem">
                         <br>{{ $beritaAcara->score }}
-                    </td>
-                    <td
-                        style="width: 33.3333%; border: 1px solid; text-align: center; vertical-align: middle; font-size: 14pt; font-weight: bold; padding-bottom: 2rem">
-                        <br>
-                        @if ($beritaAcara->score < 30)
-                            Rendah
-                        @elseif($beritaAcara->score >= 30 || $beritaAcara->score <= 50)
-                            Moderat
-                        @elseif($beritaAcara->score >= 51 || $beritaAcara->score <= 75)
-                            Tinggi
-                        @elseif($beritaAcara->score >= 76 || $beritaAcara->score <= 85)
-                            Sangat Tinggi
-                        @elseif($beritaAcara->score >= 86 || $beritaAcara->score <= 100)
-                            Ekstrem
-                        @endif
                     </td>
                 </tr>
             </table>
