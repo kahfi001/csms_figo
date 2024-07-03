@@ -6,6 +6,8 @@ use App\Models\PrequalificationMinutes;
 use App\Http\Requests\StorePrequalificationMinutesRequest;
 use App\Http\Requests\UpdatePrequalificationMinutesRequest;
 use App\Models\Certificate;
+use App\Models\User;
+use App\Notifications\EmailNotification;
 use Illuminate\Http\Request;
 
 class PrequalificationMinutesController extends Controller
@@ -72,9 +74,15 @@ class PrequalificationMinutesController extends Controller
         if (auth()->user()->role == 'vendor') {
             $validatedData['is_upload_vendor'] = 1;
             $beritum->update($validatedData);
+            $manager = User::where('role', 'manager')->get();
+            $manager->each(function ($manager) {
+                $manager->notify(new EmailNotification('Ada berita acara yang sudah ditanda tangani oleh vendor', url('/berita'), 'Berita Acara'));
+            });
         } elseif (auth()->user()->role == 'manager') {
             $validatedData['is_upload_manager'] = 1;
             $beritum->update($validatedData);
+            $vendor = User::where('id', $beritum->user_id)->first();
+            $vendor->notify(new EmailNotification('Berita acara anda sudah di tanda tangani oleh manager csms, dan seritifikat anda bisa anda lihat pada link berikut', url('/sertifikat'), 'Berita Acara'));
             PrintController::sertifikat($beritum->id);
         }
 
