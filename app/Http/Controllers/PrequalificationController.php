@@ -105,11 +105,13 @@ class PrequalificationController extends Controller
     {
         $category = Category::with('subCategory', 'subCategory.criterias')->get();
         $response = UserResponse::with(['prequalification', 'criteria'])->where('prequalification_id', $id)->get();
+        $prequalification = Prequalification::where('id', $id)->first();
 
         // dd($response);
         return view('prakualifikasi.detail', [
             'category' => $category,
-            'response' => $response
+            'response' => $response,
+            'prequalification' => $prequalification
         ]);
     }
 

@@ -134,7 +134,8 @@
                                                                 <input type="number" class="form-control" name="scores[]"
                                                                     id="scores" value="{{ $skor }}"
                                                                     aria-describedby="helpId" placeholder="score"
-                                                                    min="0" max="3" />
+                                                                    min="0" max="3"
+                                                                    {{ $prequalification->is_accepted == 0 ? '' : 'disabled' }} />
                                                                 <div id="error-message" class="text-danger"
                                                                     style="display: none">Score harus antara 0
                                                                     sampai 3.</div>
@@ -155,8 +156,10 @@
                                 <input type="hidden" name="total_score" id="total_score" value="0">
                                 <input type="hidden" name="prequalification_id" id="prequalification_id"
                                     value="{{ $userResponse->prequalification_id }}">
-                                <td style="text-align: right;"><button type="submit" class="btn btn-primary"
-                                        aria-colspan="" id="submitButton">Simpan</button></td>
+                                @if ($prequalification->is_accepted == 0)
+                                    <td style="text-align: right;"><button type="submit" class="btn btn-primary"
+                                            aria-colspan="" id="submitButton">Simpan</button></td>
+                                @endif
                             </tr>
                         </tfoot>
                     </form>
