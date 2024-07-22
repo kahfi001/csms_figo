@@ -102,7 +102,9 @@ class PrintController extends Controller
         $output_file = '/qrcodes/' . $randomString . '.png';
         Storage::put($output_file, $qrcode);
 
-        $qrcode_path = URL::asset('storage/' . $output_file);
+        // $qrcode_path = URL::asset('storage/' . $output_file);
+        $qrcode_path = 'http://csms.my.id/public/storage/' + $output_file;
+
 
         $pdf = Pdf::loadView('sertifikat.print', [
             'nomorSertif' => $nomorSertif,
