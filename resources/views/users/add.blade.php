@@ -36,7 +36,7 @@
                         <option selected>Pilih Role</option>
                         <option value="admin">ADMIN</option>
                         <option value="procurement">PROCUREMENT</option>
-                        <option value="hse">HSE</option>
+                        <option value="she">SHE</option>
                         <option value="manager">MANAGER</option>
                     </select>
                 </div>

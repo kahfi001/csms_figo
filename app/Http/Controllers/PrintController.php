@@ -75,7 +75,7 @@ class PrintController extends Controller
         $year = $date->year;
         $romanMonth = $romanMonths[$monthNumber];
 
-        $nomorSertif = $randomNumber . '/HSE/CSMS/' . $romanMonth . '/' . $year;
+        $nomorSertif = $randomNumber . '/SHE/CSMS/' . $romanMonth . '/' . $year;
         $vendorDetail = VendorDetail::where('user_id', $beritaAcara->user_id)->first();
         if ($beritaAcara->score < 30) {
             $tingkat = 'Rendah';
@@ -98,12 +98,12 @@ class PrintController extends Controller
         for ($i = 0; $i < 16; $i++) {
             $randomString .= $characters[rand(0, $charactersLength - 1)];
         }
-        $qrcode = QrCode::format('png')->size(300)->generate('http://csms.my.id/public/storage/sertifikat/' . $randomString . '.pdf');
+        $qrcode = QrCode::format('png')->size(300)->generate('http://csms-utsg.my.id/public/storage/sertifikat/' . $randomString . '.pdf');
         $output_file = '/qrcodes/' . $randomString . '.png';
         Storage::put($output_file, $qrcode);
 
         // $qrcode_path = URL::asset('storage/' . $output_file);
-        $qrcode_path = 'http://csms.my.id/public/storage/' . $output_file;
+        $qrcode_path = 'http://csms-utsg.my.id/public/storage/' . $output_file;
 
 
         $pdf = Pdf::loadView('sertifikat.print', [

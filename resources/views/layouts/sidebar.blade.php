@@ -22,7 +22,7 @@
                 <span>PROFILE</span></a>
         </li>
     @endif
-    @if (auth()->user()->role == 'vendor' || auth()->user()->role == 'hse')
+    @if (auth()->user()->role == 'vendor' || auth()->user()->role == 'she')
         <li class="nav-item {{ Route::is('prakualifikasi') ? 'active' : '' }}">
             <a class="nav-link" href={{ route('prakualifikasi') }}>
                 <span>PRAKUALIFIKASI</span></a>

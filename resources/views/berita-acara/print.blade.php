@@ -14,11 +14,11 @@
 
 <body>
     <main>
-        <img src="https://csms.my.id/public/sb-admin/img/logo.png" style="margin-bottom: 2rem;">
+        <img src="https://csms-utsg.my.id/public/sb-admin/img/logo.png" style="margin-bottom: 2rem;">
         <p style="text-align: center;"><strong>BERITA ACARA PRAKUALIFIKASI CSMS</strong></p>
         <p style="text-align: justify;">{{ $tanggal }}, kami yang di bawah ini :</p>
         <ol style="list-style-type: upper-roman;">
-            <li>&nbsp;{{ $beritaAcara->hse_name }}, selaku HSE dan Tim Prakualifikasi Contractor Safety Management
+            <li>&nbsp;{{ $beritaAcara->hse_name }}, selaku SHE dan Tim Prakualifikasi Contractor Safety Management
                 System (CSMS) “Perusahaan Tambang Tuban”</li>
             <li>{{ $vendorDetail->direktur }}, selaku Direktur {{ $vendorDetail->nama_perusahaan }}, Prakualifikasi
                 {{ $vendorDetail->nama_perusahaan }}</li>

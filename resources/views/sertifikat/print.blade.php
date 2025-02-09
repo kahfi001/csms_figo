@@ -19,7 +19,7 @@
         }
 
         .cover {
-            background-image: url('http://csms.my.id/public/sb-admin/img/sertifikatbg.jpg');
+            background-image: url('http://csms-utsg.my.id/public/sb-admin/img/sertifikatbg.jpg');
             background-size: cover;
             background-position: center;
             background-repeat: no-repeat;
@@ -70,7 +70,7 @@
         <p>Surabaya, {{ $tglCetak }}</p><br>
         <img src="{{ $qrcode_path }}" style="width: 7rem; margin: 5px;" alt="QR Code">
         <div class="left-align logo">
-            <img src="http://csms.my.id/public/sb-admin/img/logo.png" alt="Logo Perusahaan">
+            <img src="http://csms-utsg.my.id/public/sb-admin/img/logo.png" alt="Logo Perusahaan">
         </div>
     </div>
 </body>
