@@ -70,7 +70,7 @@
         <p>Surabaya, {{ $tglCetak }}</p><br>
         <img src="{{ $qrcode_path }}" style="width: 7rem; margin: 5px;" alt="QR Code">
         <div class="left-align logo">
-            <img src="http://csms-utsg.my.id/public/sb-admin/img/logo.png" alt="Logo Perusahaan">
+            <img src="{{ public_path('sb-admin/img/logo.png') }}" style="margin-bottom: 2rem; width: 7em;">
         </div>
     </div>
 </body>
