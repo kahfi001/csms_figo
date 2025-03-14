@@ -14,7 +14,7 @@
 
 <body>
     <main>
-        <img src="http://csms-utsg.my.id/public/sb-admin/img/logo.png" style="margin-bottom: 2rem; width: 7em;">
+        <img src="{{ public_path('sb-admin/img/logo.png') }}" style="margin-bottom: 2rem; width: 7em;">
         <p style="text-align: center;"><strong>BERITA ACARA PRAKUALIFIKASI CSMS</strong></p>
         <p style="text-align: justify;">{{ $tanggal }}, kami yang di bawah ini :</p>
         <ol style="list-style-type: upper-roman;">
