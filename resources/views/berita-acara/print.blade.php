@@ -14,7 +14,7 @@
 
 <body>
     <main>
-        <img src="http://csms-utsg.my.id/public/sb-admin/img/logo.png" style="margin-bottom: 2rem;">
+        <img src="{{ URL::asset('sb-admin/img/logo.png') }}" style="margin-bottom: 2rem; width: 7em;">
         <p style="text-align: center;"><strong>BERITA ACARA PRAKUALIFIKASI CSMS</strong></p>
         <p style="text-align: justify;">{{ $tanggal }}, kami yang di bawah ini :</p>
         <ol style="list-style-type: upper-roman;">
@@ -65,7 +65,7 @@
                     </tr>
                     <tr>
                         <td style="width: 50%; text-align: center;">
-                            <br><br><br><br><br>{{ $beritaAcara->manager_name }}<br>Manager
+                            <br><br><br><br><br>{{ $beritaAcara->manager_name }}<br>Manager SHE SR & Comm.
                         </td>
                         <td style="width: 50%; text-align: center;">
                             <br><br><br><br><br>{{ $vendorDetail->direktur }}<br>Direktur

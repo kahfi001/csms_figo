@@ -32,6 +32,7 @@ class PrintController extends Controller
         $characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
         $charactersLength = strlen($characters);
         $randomString = '';
+        $logo = 'http://csms_figo.test/public/sb-admin/img/logo.png';
 
         for ($i = 0; $i < 16; $i++) {
             $randomString .= $characters[rand(0, $charactersLength - 1)];
@@ -41,7 +42,8 @@ class PrintController extends Controller
             'vendorDetail' => $vendorDetail,
             'tglttd' => $tglttd,
             'tanggal' => 'Pada hari ' . $hari . ' tanggal ' . $tanggal . ' bulan ' . $bulan . ' tahun ' . $tahun,
-            'tglPrakualifikasi' => $tglPrakualifikasi
+            'tglPrakualifikasi' => $tglPrakualifikasi,
+            'logo' => $logo
         ])->setPaper('a4', 'portrait');
         // return $pdf->stream('Berita Acara.pdf');
 

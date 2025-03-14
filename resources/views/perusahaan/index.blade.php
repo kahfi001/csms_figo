@@ -49,10 +49,10 @@
                             </div>
                         </div>
                         <div class="mb-2">
-                            <label class="col-form-label required fw-semibold fs-6">No. TDP</label>
+                            <label class="col-form-label required fw-semibold fs-6">No. NIB</label>
                             <div class="col-lg-10 fv-row">
                                 <input type="number" name="no_tdp" class="form-control form-control-solid"
-                                    placeholder="No TDP" value="{{ $vendor->no_tdp ?? '' }}" />
+                                    placeholder="No NIB" value="{{ $vendor->no_tdp ?? '' }}" />
                             </div>
                         </div>
                         <div class="mb-2">
