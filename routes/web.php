@@ -10,6 +10,7 @@ use App\Http\Controllers\PrintController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\SubCategoryController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\VendorController;
 use App\Http\Controllers\VendorDetailController;
 use App\Models\Certificate;
 use App\Models\PrequalificationMinutes;
@@ -49,6 +50,8 @@ Route::post('/kriteria', [CriteriaController::class, 'store'])->name('store-krit
 Route::delete('/kategori/{id}', [CategoryController::class, 'destroy'])->name('delete-kategori');
 Route::delete('/subkategori/{id}', [SubCategoryController::class, 'destroy'])->name('delete-subkategori');
 Route::delete('/kriteria/{id}', [CriteriaController::class, 'destroy'])->name('delete-kriteria');
+Route::get('/vendor', [VendorController::class, 'index'])->middleware('auth', 'verified')->name('vendor');
+Route::get('/vendor/{id}', [VendorController::class, 'show'])->middleware('auth', 'verified')->name('vendor.detail');
 
 Route::get('/sertifikat', [CertificateController::class, 'index'])->middleware(['auth', 'verified'])->name('sertifikat');
 Route::get('/sertifikat/print', function () {

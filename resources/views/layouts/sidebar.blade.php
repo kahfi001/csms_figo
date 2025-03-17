@@ -39,9 +39,15 @@
             <span>SERTIFIKAT</span></a>
     </li>
     @if (auth()->user()->role == 'admin')
-        <li class="nav-item {{ Route::is('user') ? 'active' : '' }} ">
+        <li class="nav-item {{ Route::is('users') ? 'active' : '' }} ">
             <a class="nav-link" href={{ route('users') }}>
                 <span>USER</span></a>
+        </li>
+    @endif
+    @if (auth()->user()->role != 'vendor')
+        <li class="nav-item {{ Route::is('vendor') ? 'active' : '' }} ">
+            <a class="nav-link" href={{ route('vendor') }}>
+                <span>VENDOR</span></a>
         </li>
     @endif
 
