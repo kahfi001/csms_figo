@@ -19,7 +19,6 @@
                         <th>No</th>
                         <th>Name</th>
                         <th>Email</th>
-                        <th>Role</th>
                         <th>Actions</th>
                     </thead>
                 </table>
@@ -37,7 +36,7 @@
                 ordering: true,
                 stateSave: false,
 
-                ajax: "{{ url('vendor') }}",
+                ajax: "{{ url('vendor-data') }}",
                 columns: [{
                         data: 'DT_RowIndex',
                         name: 'DT_RowIndex'
@@ -49,10 +48,6 @@
                     {
                         data: 'email',
                         name: 'email'
-                    },
-                    {
-                        data: 'role',
-                        name: 'role'
                     },
                     {
                         data: 'action',
